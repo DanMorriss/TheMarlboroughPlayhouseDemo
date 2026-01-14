@@ -11,3 +11,14 @@
 .links {
     margin: 0 20px;
 }
+
+.nav-image {
+    font-size: 2.25rem;
+    margin-right: 50px;
+    transition: transform 300ms;
+    display: inline-block;
+}
+
+.nav-image:hover {
+    transform: rotate(10deg);
+}

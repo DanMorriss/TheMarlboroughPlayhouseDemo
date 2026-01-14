@@ -1,0 +1,6 @@
+.icon {
+    width: 31px; 
+    height: 31px; 
+    flex-shrink: 0;
+    margin-right: 15px;
+}
