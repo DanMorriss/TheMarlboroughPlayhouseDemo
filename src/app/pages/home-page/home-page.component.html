@@ -1,7 +1,9 @@
 <app-navbar></app-navbar>
 <div class="flex flex-col items-center">
+  <!-- Scrolls slower than the page so it sinks behind the town below -->
   <section
-    class="w-full max-w-[1200px] mx-auto px-4 pt-[16px] md:pt-[32px] pb-[40px] md:pb-[80px] flex flex-col lg:flex-row items-center gap-10 lg:gap-16"
+    [appParallax]="-0.3"
+    class="relative z-0 w-full max-w-[1200px] mx-auto px-4 pt-[16px] md:pt-[32px] pb-[220px] md:pb-[420px] lg:pb-[240px] xl:pb-[120px] flex flex-col lg:flex-row items-center gap-10 lg:gap-16"
   >
     <!-- Photo collage; each photo drifts at its own speed as the page scrolls -->
     <div class="collage w-full max-w-[560px] lg:max-w-none lg:w-1/2">
@@ -90,7 +92,8 @@
   </section>
 </div>
 
-<div class="-mb-[10px] relative w-full overflow-x-hidden m-0 p-0">
+<!-- Decorative only: let clicks pass through to the buttons behind it -->
+<div class="-mb-[10px] -mt-[8px] md:-mt-[40px] relative z-10 w-full overflow-x-hidden p-0 pointer-events-none">
   <img
     src="assets/images/town-background.png"
     alt="Town Background"
@@ -98,6 +101,6 @@
   />
 </div>
 
-<app-about-page id="plan-your-visit" class="block"></app-about-page>
+<app-about-page id="plan-your-visit" class="relative z-10 block"></app-about-page>
 <app-private-hire-page id="private-hire" class="block"></app-private-hire-page>
 <app-contact-page id="contact" class="block"></app-contact-page>

@@ -15,6 +15,7 @@ export class ParallaxDirective implements OnInit, OnDestroy {
   private readonly el = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly zone = inject(NgZone);
   private frame = 0;
+  private offset = 0;
 
   ngOnInit() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -40,7 +41,13 @@ export class ParallaxDirective implements OnInit, OnDestroy {
   };
 
   private update() {
-    const offset = -window.scrollY * this.speed;
-    this.el.nativeElement.style.transform = `translate3d(0, ${offset}px, 0)`;
+    const element = this.el.nativeElement;
+    // Stop moving once the element's original position has scrolled out of view,
+    // so slow-moving elements don't drift down into later sections
+    const bottom = element.getBoundingClientRect().bottom + window.scrollY - this.offset;
+    const scroll = Math.min(window.scrollY, bottom);
+
+    this.offset = -scroll * this.speed;
+    element.style.transform = `translate3d(0, ${this.offset}px, 0)`;
   }
 }
