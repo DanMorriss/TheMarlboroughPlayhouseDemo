@@ -1,36 +1,148 @@
 <div
-  class="about-background bg-[#f1d0c3] pt-0 mt-0 text-[16px]/[26px] sm:text-[19px]/[32px] md:text-[24px]/[40px] text-center pb-[36px] md:pb-[50px] px-[16px] space-y-6"
+  class="about-background bg-[#f1d0c3] text-[16px]/[26px] md:text-[19px]/[30px] pt-[32px] md:pt-[48px] pb-[40px] md:pb-[64px] px-[16px]"
 >
-  <p class="first-paragraph max-w-[800px] mx-auto">
-    Welcome to The Play House — a beautifully designed space where little
-    imaginations run wild and grown-ups can actually enjoy a coffee while it
-    happens!
-  </p>
-  <p class="max-w-[800px] mx-auto">
-    We’re a family-run soft play café based in the heart of Marlborough, created
-    with one simple goal: to offer a calm, beautiful play space for 0-8 year
-    olds - a warm, welcoming environment that works just as well for toddlers as
-    it does for tired parents.
-  </p>
-  <p class="max-w-[800px] mx-auto">
-    Our custom-built mini play town wraps around the room and features a
-    builder’s yard (complete with foam bricks and high-vis vests), a cosy café,
-    pretend shops, an arts & crafts corner and more — all made from wood,
-    thoughtfully designed, and just the right size for curious little ones.
-  </p>
-  <p class="max-w-[800px] mx-auto">
-    We’ve also designed our café with grown-ups in mind — whether you're here to
-    catch up with friends, take five with a flat white, or settle into a beanbag
-    while your baby snoozes. With healthy snacks for kids, plenty of high chairs
-    and bouncers, and a rotating menu of events and quieter sessions, we’ve
-    tried to think of everything.
-  </p>
-  <h2>Join the Play</h2>
-  <p class="max-w-[800px] mx-auto">
-    Whether it’s your little one’s first crawl, a rainy-day retreat, or your
-    go-to meet-up spot, we can’t wait to welcome you.
-  </p>
-  <p class="max-w-[800px] mx-auto">
-    Come for the coffee. Stay for the memories.
-  </p>
+  <div class="max-w-[1100px] mx-auto">
+    <h2 class="section-heading">Plan your visit</h2>
+
+    <div class="grid gap-4 md:gap-6 md:grid-cols-2">
+      <div class="info-card" [appPopIn]="0">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="info-icon" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+        </svg>
+        <div>
+          <h3>Where to find us</h3>
+          <p>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=The%20Marlborough%20Playhouse%2C%20The%20Old%20Chapel%2C%20The%20Parade%2C%20Marlborough%20SN8%201NE"
+              target="_blank"
+              rel="noopener"
+              >The Old Chapel, The Parade, SN8 1NE</a
+            >
+            (we're between the cinema and the fire station)
+          </p>
+        </div>
+      </div>
+
+      <div class="info-card" [appPopIn]="100">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="info-icon" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+        <div>
+          <h3>Opening hours</h3>
+          <p>
+            Monday to Saturday, 9am - 4:30pm. No set session times, open play
+            all day.
+          </p>
+        </div>
+      </div>
+
+      <div class="info-card" [appPopIn]="200">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="info-icon" aria-hidden="true">
+          <rect x="3.75" y="3.75" width="16.5" height="16.5" rx="3" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 16.5v-9h3a3 3 0 0 1 0 6h-3" />
+        </svg>
+        <div>
+          <h3>Parking</h3>
+          <p>
+            2 hours free parking right outside, or longer paid parking less than
+            a minute's walk away at Kennet Place or Waitrose car park.
+          </p>
+        </div>
+      </div>
+
+      <div class="info-card" [appPopIn]="300">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="info-icon" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+        </svg>
+        <div>
+          <h3>No booking needed</h3>
+          <p>
+            Mornings are often busy, so feel free to
+            <a
+              href="https://wa.me/447908052734?text=Hi%2C%20I'd%20like%20to%20reserve%20a%20table%20at%20The%20Marlborough%20Playhouse"
+              target="_blank"
+              rel="noopener"
+              >text or WhatsApp</a
+            >
+            to reserve a table. Just let us know the date, time and how many
+            adults and children are coming. Let us know if it's a special
+            occasion too!
+          </p>
+        </div>
+      </div>
+
+      <div class="info-card" [appPopIn]="400">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="info-icon" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14.121 7.629A3 3 0 0 0 9.017 9.43c-.023.212-.002.425.028.636l.506 3.541a4.5 4.5 0 0 1-.43 2.65L9 16.5l1.539-.513a2.25 2.25 0 0 1 1.422 0l.655.218a2.25 2.25 0 0 0 1.718-.122L15 15.75M8.25 12H12m9 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+        <div class="grow">
+          <h3>Prices</h3>
+          <p>Designed for 0-6s, although everyone's welcome.</p>
+          <dl class="price-list">
+            <div><dt>3 years and over</dt><dd>£8.20</dd></div>
+            <div><dt>1 - 3 years</dt><dd>£6.50</dd></div>
+            <div><dt>6 - 12 months</dt><dd>£5.50</dd></div>
+            <div><dt>Under 6 months</dt><dd>Free</dd></div>
+            <div><dt>Adults</dt><dd>£1</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="info-card" [appPopIn]="500">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="info-icon" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+        <div>
+          <h3>Good to know</h3>
+          <ul class="check-list">
+            <li>Step-free access</li>
+            <li>Space to park your buggy or pram</li>
+            <li>Baby changing facilities</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-heading section-heading--spaced">What's here?</h2>
+
+    <div class="grid gap-6 md:grid-cols-3">
+      <div class="feature-card" [appPopIn]="0">
+        <img src="assets/images/ph-19.jpeg" alt="A wooden bridge through an archway in the play village" loading="lazy" />
+        <div class="feature-card-body">
+          <h3>Play</h3>
+          <p>
+            A dedicated baby area for non-crawlers, role play rooms, a cosy den
+            and plenty to explore once they're on the move. Every corner is
+            reachable for even the littlest explorers.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-card" [appPopIn]="120">
+        <img src="assets/images/ph-5.jpeg" alt="Café tables and chairs in front of the play village" loading="lazy" />
+        <div class="feature-card-body">
+          <h3>Café</h3>
+          <p>
+            Hot and cold drinks, cakes (with gluten free, dairy free and vegan
+            options), pastries and snack plates for little ones, plus proper
+            coffee for the grown-ups.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-card" [appPopIn]="240">
+        <img src="assets/images/ph-8.jpeg" alt="Unpainted ceramic piggy banks and mugs on a shelf" loading="lazy" />
+        <div class="feature-card-body">
+          <h3>Ceramics</h3>
+          <p>
+            Our ceramics shop is perfect for little ones, older kids and adults
+            alike. Paint a mug, vase or trinket at your table, or take one home
+            to paint there. Either way, leave it with us for firing and it'll
+            be ready to take home and enjoy.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
