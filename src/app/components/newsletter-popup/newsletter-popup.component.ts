@@ -27,7 +27,8 @@ export class NewsletterPopupComponent implements OnDestroy {
     effect(() => {
       const dialog = this.dialog.nativeElement;
       if (this.newsletter.popupOpen() && !dialog.open) {
-        if (!this.newsletter.hasSubscribed()) this.status.set('idle');
+        // Always open on a fresh form, so people can sign up again or with another email
+        this.signUpAgain();
         dialog.showModal();
       } else if (!this.newsletter.popupOpen() && dialog.open) {
         dialog.close();
@@ -58,6 +59,11 @@ export class NewsletterPopupComponent implements OnDestroy {
 
   close() {
     this.newsletter.dismiss();
+  }
+
+  /** Back to an empty sign-up form (the email field is new each time it's shown). */
+  signUpAgain() {
+    this.status.set('idle');
   }
 
   /** Clicking the dimmed area outside the popup closes it. */
