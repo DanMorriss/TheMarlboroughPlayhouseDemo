@@ -4,6 +4,7 @@ import { AboutPageComponent } from "../about-page/about-page.component";
 import { ContactPageComponent } from "../contact-page/contact-page.component";
 import { PrivateHirePageComponent } from "../private-hire-page/private-hire-page.component";
 import { ParallaxDirective } from '../../directives/parallax.directive';
+import { PopInDirective } from '../../directives/pop-in.directive';
 
 interface CollagePhoto {
   src: string;
@@ -21,7 +22,7 @@ interface CollagePhoto {
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [NavbarComponent, AboutPageComponent, PrivateHirePageComponent, ContactPageComponent, ParallaxDirective],
+  imports: [NavbarComponent, AboutPageComponent, PrivateHirePageComponent, ContactPageComponent, ParallaxDirective, PopInDirective],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })
