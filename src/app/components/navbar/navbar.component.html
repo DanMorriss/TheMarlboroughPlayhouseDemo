@@ -58,13 +58,23 @@
       </a>
     </li>
     <li class="links">
-      <a routerLink="/booking">
-        <span class="rainbow-text nav-image">BOOKING</span>
+      <a routerLink="/home" fragment="plan-your-visit">
+        <span class="rainbow-text nav-image">PLAN YOUR VISIT</span>
       </a>
     </li>
     <li class="links">
-      <a routerLink="/private-hire">
+      <a routerLink="/home" fragment="private-hire">
         <span class="rainbow-text nav-image">PRIVATE HIRE</span>
+      </a>
+    </li>
+    <li class="links">
+      <a routerLink="/home" fragment="contact">
+        <span class="rainbow-text nav-image">CONTACT</span>
+      </a>
+    </li>
+    <li class="links">
+      <a routerLink="/booking">
+        <span class="rainbow-text nav-image">EVENTS</span>
       </a>
     </li>
   </ul>
@@ -78,13 +88,23 @@
         </a>
       </li>
       <li>
-        <a routerLink="/booking" (click)="closeMenu()">
-          <span class="rainbow-text nav-image-mobile">BOOKING</span>
+        <a routerLink="/home" fragment="plan-your-visit" (click)="closeMenu()">
+          <span class="rainbow-text nav-image-mobile">PLAN YOUR VISIT</span>
         </a>
       </li>
       <li>
-        <a routerLink="/private-hire" (click)="closeMenu()">
+        <a routerLink="/home" fragment="private-hire" (click)="closeMenu()">
           <span class="rainbow-text nav-image-mobile">PRIVATE HIRE</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/home" fragment="contact" (click)="closeMenu()">
+          <span class="rainbow-text nav-image-mobile">CONTACT</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/booking" (click)="closeMenu()">
+          <span class="rainbow-text nav-image-mobile">EVENTS</span>
         </a>
       </li>
     </ul>

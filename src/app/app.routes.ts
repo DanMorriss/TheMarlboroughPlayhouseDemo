@@ -1,10 +1,9 @@
-import { Routes } from '@angular/router';
+import { inject } from '@angular/core';
+import { Router, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
-import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { BookingPageComponent } from './pages/booking-page/booking-page.component';
-import { PrivateHirePageComponent } from './pages/private-hire-page/private-hire-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
 export const routes: Routes = [
@@ -24,18 +23,20 @@ export const routes: Routes = [
         title: 'About Us - The Marlborough Playhouse'
     },
     { 
+        // Contact now lives on the home page; keep old links working
         path: 'contact',
-        component: ContactPageComponent,
-        title: 'Contact Us - The Marlborough Playhouse'
+        component: HomePageComponent,
+        canActivate: [() => inject(Router).createUrlTree(['/home'], { fragment: 'contact' })]
     },
     { 
         path: 'booking',
         component: BookingPageComponent,
-        title: 'Booking - The Marlborough Playhouse'
+        title: 'Events - The Marlborough Playhouse'
     },
-    { 
+    {
+        // Private hire now lives on the home page; keep old links working
         path: 'private-hire',
-        component: PrivateHirePageComponent,
-        title: 'Private Hire - The Marlborough Playhouse'
+        component: HomePageComponent,
+        canActivate: [() => inject(Router).createUrlTree(['/home'], { fragment: 'private-hire' })]
     }
 ];
