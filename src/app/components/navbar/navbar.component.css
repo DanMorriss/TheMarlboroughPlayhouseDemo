@@ -71,7 +71,53 @@
     height: 32px;
 }
 
+/* Lines rotate around the centre of the icon's viewBox */
+.menu-icon path {
+    transform-box: view-box;
+    transform-origin: 50% 50%;
+    transition: transform 350ms ease, opacity 200ms ease;
+}
+
+.menu-icon--open .menu-icon-top {
+    transform: rotate(45deg) translateY(5.25px);
+}
+
+.menu-icon--open .menu-icon-middle {
+    opacity: 0;
+    transform: scaleX(0.2);
+}
+
+.menu-icon--open .menu-icon-bottom {
+    transform: rotate(-45deg) translateY(-5.25px);
+}
+
+/* Mobile menu slides open by animating its grid row from 0fr to 1fr */
+.mobile-nav {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 350ms ease, opacity 300ms ease;
+}
+
+.mobile-nav--open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+.mobile-nav-clip {
+    min-height: 0;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .mobile-nav {
+        display: none;
+    }
+}
+
 .mobile-nav-list {
+    transform: translateY(-12px);
+    transition: transform 350ms ease;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -80,7 +126,19 @@
     padding: 8px 0 24px;
 }
 
+.mobile-nav--open .mobile-nav-list {
+    transform: translateY(0);
+}
+
 .nav-image-mobile {
     font-size: 1.5rem;
     display: inline-block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mobile-nav,
+    .mobile-nav-list,
+    .menu-icon path {
+        transition: none;
+    }
 }

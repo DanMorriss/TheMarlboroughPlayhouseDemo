@@ -17,35 +17,25 @@
         class="menu-button md:hidden"
         (click)="toggleMenu()"
         [attr.aria-expanded]="menuOpen()"
+        aria-controls="mobile-nav"
         aria-label="Toggle navigation menu"
       >
-        @if (!menuOpen()) {
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="2"
-            stroke="currentColor"
-            class="menu-icon"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"
-            />
-          </svg>
-        } @else {
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="2"
-            stroke="currentColor"
-            class="menu-icon"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-          </svg>
-        }
+        <!-- Three lines that animate into an X when the menu is open -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          stroke-linecap="round"
+          class="menu-icon"
+          [class.menu-icon--open]="menuOpen()"
+          aria-hidden="true"
+        >
+          <path class="menu-icon-top" d="M3.75 6.75h16.5" />
+          <path class="menu-icon-middle" d="M3.75 12h16.5" />
+          <path class="menu-icon-bottom" d="M3.75 17.25h16.5" />
+        </svg>
       </button>
     </div>
   </div>
@@ -79,34 +69,41 @@
     </li>
   </ul>
 
-  <!-- Mobile Nav -->
-  @if (menuOpen()) {
-    <ul class="mobile-nav-list list-none md:hidden">
-      <li>
-        <a routerLink="/home" (click)="closeMenu()">
-          <span class="rainbow-text nav-image-mobile">HOME</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink="/home" fragment="plan-your-visit" (click)="closeMenu()">
-          <span class="rainbow-text nav-image-mobile">PLAN YOUR VISIT</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink="/home" fragment="private-hire" (click)="closeMenu()">
-          <span class="rainbow-text nav-image-mobile">PRIVATE HIRE</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink="/home" fragment="contact" (click)="closeMenu()">
-          <span class="rainbow-text nav-image-mobile">CONTACT</span>
-        </a>
-      </li>
-      <li>
-        <a routerLink="/booking" (click)="closeMenu()">
-          <span class="rainbow-text nav-image-mobile">EVENTS</span>
-        </a>
-      </li>
-    </ul>
-  }
+  <!-- Mobile Nav: always rendered so it can slide open and closed; inert while closed -->
+  <div
+    id="mobile-nav"
+    class="mobile-nav"
+    [class.mobile-nav--open]="menuOpen()"
+    [attr.inert]="menuOpen() ? null : ''"
+  >
+    <div class="mobile-nav-clip">
+      <ul class="mobile-nav-list list-none">
+        <li>
+          <a routerLink="/home" (click)="closeMenu()">
+            <span class="rainbow-text nav-image-mobile">HOME</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/home" fragment="plan-your-visit" (click)="closeMenu()">
+            <span class="rainbow-text nav-image-mobile">PLAN YOUR VISIT</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/home" fragment="private-hire" (click)="closeMenu()">
+            <span class="rainbow-text nav-image-mobile">PRIVATE HIRE</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/home" fragment="contact" (click)="closeMenu()">
+            <span class="rainbow-text nav-image-mobile">CONTACT</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/booking" (click)="closeMenu()">
+            <span class="rainbow-text nav-image-mobile">EVENTS</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
