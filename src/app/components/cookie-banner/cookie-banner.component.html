@@ -1,0 +1,19 @@
+@if (consent.bannerOpen()) {
+  <section class="cookie-banner" role="region" aria-label="Cookie choices">
+    <p>
+      We'd like to use optional cookies from MailerLite, our mailing list
+      provider, to help us understand how people use our site. Everything works
+      either way.
+      <a href="/assets/documents/cookie-policy.pdf" target="_blank" rel="noopener">Cookie policy</a>
+    </p>
+    <!-- Both choices are equally easy, as required -->
+    <div class="cookie-banner-actions">
+      <button type="button" class="contact-button contact-button--book" (click)="consent.accept()">
+        Accept
+      </button>
+      <button type="button" class="contact-button contact-button--email" (click)="consent.reject()">
+        Reject
+      </button>
+    </div>
+  </section>
+}

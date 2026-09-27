@@ -1,0 +1,70 @@
+/* Card pinned to the bottom of the screen, above the sticky nav bar */
+.cookie-banner {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 60;
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 24px;
+  border-radius: 16px;
+  background-color: #fff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  font-size: 16px;
+  line-height: 1.5;
+  animation: cookie-banner-in 400ms ease both;
+}
+
+.cookie-banner p {
+  margin: 0;
+}
+
+.cookie-banner a {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Smaller than the page's contact buttons, and the same size as each other */
+.cookie-banner-actions .contact-button {
+  flex: 1;
+  justify-content: center;
+  font-size: 17px;
+  padding: 8px 24px;
+  border: none;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .cookie-banner {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .cookie-banner-actions .contact-button {
+    flex: none;
+  }
+}
+
+@keyframes cookie-banner-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie-banner {
+    animation: none;
+  }
+}

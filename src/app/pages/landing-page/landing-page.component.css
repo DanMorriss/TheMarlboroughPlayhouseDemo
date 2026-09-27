@@ -1,9 +1,0 @@
-.bounce-in-top{-webkit-animation:bounce-in-top 1.1s both;animation:bounce-in-top 1.1s both}
-
-.heartbeat{-webkit-animation:heartbeat 1.5s ease-in-out infinite both;animation:heartbeat 1.5s ease-in-out infinite both}
-
-.wobble-hor-bottom{-webkit-animation:wobble-hor-bottom .8s 3s both;animation:wobble-hor-bottom .8s 3s both}
-
-.swing-in-top-fwd-1{-webkit-animation:swing-in-top-fwd 1.2s cubic-bezier(.175,.885,.32,1.275) both;animation:swing-in-top-fwd 1.2s cubic-bezier(.175,.885,.32,1.275) 1.5s both}
-
-.swing-in-top-fwd-2{-webkit-animation:swing-in-top-fwd 1.2s cubic-bezier(.175,.885,.32,1.275) both;animation:swing-in-top-fwd 1.2s cubic-bezier(.175,.885,.32,1.275) 2.5s both}

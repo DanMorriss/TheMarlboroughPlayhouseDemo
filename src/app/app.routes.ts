@@ -5,13 +5,13 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { EventsPageComponent } from './pages/events-page/events-page.component';
 import { EventPageComponent } from './pages/event-page/event-page.component';
-import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
 export const routes: Routes = [
-    { 
+    {
+        // The site starts on the home page
         path: '',
-        component: LandingPageComponent,
-        title: 'The Marlborough Playhouse',
+        pathMatch: 'full',
+        redirectTo: 'home'
     },
     { 
         path: 'home',

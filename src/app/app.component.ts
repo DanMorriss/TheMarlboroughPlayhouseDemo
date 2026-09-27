@@ -2,13 +2,14 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterOutlet, Scroll } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 import { filter } from 'rxjs';
-import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
+import { CookieBannerComponent } from "./components/cookie-banner/cookie-banner.component";
+import { NewsletterPopupComponent } from "./components/newsletter-popup/newsletter-popup.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavbarComponent, FooterComponent],
+  imports: [RouterOutlet, FooterComponent, CookieBannerComponent, NewsletterPopupComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

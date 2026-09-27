@@ -1,0 +1,127 @@
+.newsletter-popup {
+  width: calc(100% - 32px);
+  max-width: 440px;
+  padding: 32px 24px 24px;
+  border: none;
+  border-radius: 20px;
+  background-color: #f9f3f3;
+  color: #545454;
+  text-align: center;
+  font-size: 17px;
+  line-height: 1.5;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
+}
+
+.newsletter-popup[open] {
+  animation: newsletter-in 450ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.newsletter-popup::backdrop {
+  background-color: rgba(84, 84, 84, 0.45);
+}
+
+.newsletter-popup p {
+  margin: 0 0 16px;
+}
+
+.newsletter-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  border: none;
+  background: none;
+  color: #545454;
+  cursor: pointer;
+}
+
+.newsletter-logo {
+  height: 64px;
+  width: auto;
+  margin: 0 auto 12px;
+}
+
+.newsletter-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.newsletter-label {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.newsletter-form input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #f1d0c3;
+  border-radius: 12px;
+  background-color: #fff;
+  font: inherit;
+  color: inherit;
+}
+
+.newsletter-form input:focus {
+  outline: none;
+  border-color: #B8456B;
+}
+
+.newsletter-submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 19px;
+}
+
+.newsletter-submit:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.newsletter-error {
+  color: #B3261E;
+  font-size: 15px;
+  margin: 0 !important;
+}
+
+.newsletter-small {
+  font-size: 14px;
+  margin: 12px 0 4px !important;
+}
+
+.newsletter-no-thanks {
+  border: none;
+  background: none;
+  padding: 4px 8px;
+  font: inherit;
+  font-size: 15px;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+@keyframes newsletter-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .newsletter-popup[open] {
+    animation: none;
+  }
+}
