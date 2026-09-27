@@ -1,26 +1,80 @@
 <app-navbar></app-navbar>
 <div class="flex flex-col items-center">
-  <div class="w-full flex justify-center px-4 md:w-1/2">
-    <img
-      src="assets/images/drawn-play-house.svg"
-      alt="A hand drawn illustration of The Play House"
-      class="h-[260px] w-auto sm:h-[400px] md:h-[680px] md:max-h-screen"
-    />
-  </div>
-
-  <div
-    class="text-center text-[17px]/[28px] sm:text-[20px]/[32px] md:text-[24px]/[40px] pt-[40px] md:pt-[100px] px-[20px] max-w-[600px] w-full md:w-1/2"
+  <section
+    class="w-full max-w-[1200px] mx-auto px-4 pt-[16px] md:pt-[32px] pb-[40px] md:pb-[80px] flex flex-col lg:flex-row items-center gap-10 lg:gap-16"
   >
-    <p>
-      Marlboroughs First and Only Play Cafe where your little ones can let their
-      imaginations run wild.
-    </p>
-    <p class="py-[16px] md:py-[20px]">
-      Play Sessions, SEN Sessions, Private Hire plus yummy snacks and drinks
-      (including great coffee) available from our cafe.
-    </p>
-    <p class="italic">Classes, Group and Events coming soon.</p>
-  </div>
+    <!-- Photo collage; each photo drifts at its own speed as the page scrolls -->
+    <div class="collage w-full max-w-[560px] lg:max-w-none lg:w-1/2">
+      @for (photo of collagePhotos; track photo.src) {
+        <div
+          class="collage-item"
+          [appParallax]="photo.speed"
+          [style.left.%]="photo.left"
+          [style.top.%]="photo.top"
+          [style.width.%]="photo.width"
+          [style.z-index]="photo.z"
+        >
+          <img
+            [src]="photo.src"
+            [alt]="photo.alt"
+            class="collage-photo"
+            [style.rotate.deg]="photo.rotate"
+            decoding="async"
+          />
+        </div>
+      }
+    </div>
+
+    <div
+      class="w-full lg:w-1/2 text-center lg:text-left text-[17px]/[28px] sm:text-[20px]/[32px] md:text-[24px]/[40px] space-y-4"
+    >
+      <h1 class="text-[26px]/[36px] sm:text-[32px]/[42px] md:text-[40px]/[52px] font-semibold">
+        Indoor play cafe for 0-6s in Central Marlborough
+      </h1>
+      <p>Open Monday - Saturday 9AM - 4:30PM</p>
+      <p>No set session times, open play all day, walk-ins welcomed</p>
+      <p>Text or WhatsApp to reserve a table</p>
+      <div class="flex flex-col items-center lg:items-start gap-3">
+        <a
+          href="https://wa.me/447908052734?text=Hi%2C%20I'd%20like%20to%20reserve%20a%20table%20at%20The%20Marlborough%20Playhouse"
+          target="_blank"
+          rel="noopener"
+          class="contact-button contact-button--whatsapp"
+          aria-label="Message us on WhatsApp: 07908 052 734"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path
+              d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"
+            />
+          </svg>
+          07908 052 734
+        </a>
+        <a
+          href="https://www.google.com/maps/dir/?api=1&destination=The%20Marlborough%20Playhouse%2C%20The%20Old%20Chapel%2C%20The%20Parade%2C%20Marlborough%20SN8%201NE"
+          target="_blank"
+          rel="noopener"
+          class="contact-button contact-button--maps"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
+            />
+          </svg>
+          Get directions
+        </a>
+      </div>
+    </div>
+  </section>
 </div>
 
 <div class="-mb-[10px] relative w-full overflow-x-hidden m-0 p-0">
