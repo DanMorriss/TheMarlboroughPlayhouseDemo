@@ -1,0 +1,17 @@
+/*
+ * TypeScript settings for Vercel functions in /api. Kept separate from the
+ * Angular config (which outputs ES modules) because the project isn't
+ * "type": "module", so functions must compile to CommonJS to run on Vercel.
+ */
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": ["ES2022", "DOM"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": ["./**/*.ts"]
+}
