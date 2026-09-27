@@ -1,0 +1,104 @@
+.events-message {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.events-message a {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.event-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.event-card-body {
+  display: flex;
+  gap: 16px;
+  padding: 20px 20px 0;
+  flex-grow: 1;
+}
+
+/* Calendar-style date tile */
+.event-date {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 68px;
+  border-radius: 12px;
+  background-color: #f1d0c3;
+  line-height: 1;
+}
+
+.event-date-day {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.event-date-month {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.event-title {
+  font-size: 1.3em;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 4px;
+}
+
+.event-meta {
+  margin: 0;
+}
+
+.event-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 0;
+}
+
+.event-tag {
+  padding: 2px 12px;
+  border-radius: 9999px;
+  background-color: #f9f3f3;
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+.event-tag--full {
+  background-color: #545454;
+  color: #fff;
+}
+
+/* Show the first few lines of the description */
+.event-summary {
+  margin: 12px 0 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.event-card-footer {
+  padding: 20px;
+}

@@ -103,6 +103,11 @@ body {
     background-color: #545454;
 }
 
+/* Primary "Book now" action: deep pink to tie in with the site's pinks */
+.contact-button--book {
+    background-color: #B8456B;
+}
+
 @media (min-width: 768px) {
     .contact-button {
         font-size: 24px;

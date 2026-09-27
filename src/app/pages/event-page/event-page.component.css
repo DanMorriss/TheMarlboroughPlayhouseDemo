@@ -1,0 +1,117 @@
+.back-link {
+  display: inline-block;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.event-message {
+  text-align: center;
+  margin: 32px auto 0;
+}
+
+.event-message a {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.event-summary-card {
+  background-color: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.event-image {
+  display: block;
+  width: calc(100% + 48px);
+  max-width: none;
+  margin: -24px -24px 24px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* Date, time, price and spaces as a row of icon + text pills */
+.event-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+.event-facts li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background-color: #f1d0c3;
+  font-weight: 600;
+}
+
+.event-facts svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.event-facts li.event-full {
+  background-color: #545454;
+  color: #fff;
+}
+
+/* Keep Bookwhen's line breaks within each paragraph */
+.event-paragraph {
+  white-space: pre-line;
+  margin: 0 0 12px;
+}
+
+.event-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* White card holding the Bookwhen iframe */
+.booking-frame {
+  position: relative;
+  background-color: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.booking-frame iframe {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: max(640px, 85vh);
+  border: 0;
+}
+
+.booking-frame-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+.booking-fallback {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.95rem;
+}
+
+.booking-fallback a {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

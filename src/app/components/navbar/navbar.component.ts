@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     { label: 'PLAN YOUR VISIT', path: '/home', fragment: 'plan-your-visit' },
     { label: 'PRIVATE HIRE', path: '/home', fragment: 'private-hire' },
     { label: 'CONTACT', path: '/home', fragment: 'contact' },
-    { label: 'EVENTS', path: '/booking' },
+    { label: 'EVENTS', path: '/events' },
   ];
 
   readonly menuOpen = signal(false);

@@ -1,0 +1,70 @@
+<app-navbar></app-navbar>
+
+<div class="px-[16px] pt-[16px] md:pt-[32px] pb-[48px] md:pb-[72px] text-[16px]/[26px] md:text-[19px]/[30px]">
+  <div class="max-w-[1100px] mx-auto">
+    <h1 class="section-heading">Events</h1>
+
+    @switch (status()) {
+      @case ('loading') {
+        <p class="events-message">Loading events…</p>
+      }
+      @case ('error') {
+        <p class="events-message">
+          We couldn't load our events just now. You can still see everything on
+          <a [href]="bookwhenUrl" target="_blank" rel="noopener">our booking page</a>.
+        </p>
+      }
+      @case ('ready') {
+        @if (events().length === 0) {
+          <p class="events-message">No upcoming events right now. Check back soon!</p>
+        } @else {
+          <div class="grid gap-6 md:grid-cols-2">
+            @for (event of events(); track event.id; let i = $index) {
+              <article class="event-card" [appPopIn]="(i % 2) * 120">
+                @if (event.imageUrl) {
+                  <img [src]="event.imageUrl" [alt]="event.title" class="event-card-image" loading="lazy" />
+                }
+                <div class="event-card-body">
+                  <div class="event-date" [attr.aria-label]="fullDate(event)">
+                    <span class="event-date-day">{{ dayOfMonth(event) }}</span>
+                    <span class="event-date-month">{{ shortMonth(event) }}</span>
+                  </div>
+
+                  <div class="min-w-0">
+                    <h2 class="event-title">{{ event.title }}</h2>
+                    <p class="event-meta">
+                      {{ fullDate(event) }}, <span class="whitespace-nowrap">{{ timeRange(event) }}</span>
+                    </p>
+                    <div class="event-tags">
+                      @if (priceLabel(event); as price) {
+                        <span class="event-tag">{{ price }}</span>
+                      }
+                      @if (spacesLabel(event); as spaces) {
+                        <span class="event-tag" [class.event-tag--full]="isFullyBooked(event)">{{ spaces }}</span>
+                      }
+                    </div>
+                    @if (summary(event); as text) {
+                      <p class="event-summary">{{ text }}</p>
+                    }
+                  </div>
+                </div>
+
+                <div class="event-card-footer">
+                  <a [routerLink]="['/events', event.id]" class="contact-button contact-button--book">
+                    @if (!isFullyBooked(event)) {
+                      Book now
+                    } @else if (event.waitingList) {
+                      Join the waiting list
+                    } @else {
+                      View details
+                    }
+                  </a>
+                </div>
+              </article>
+            }
+          </div>
+        }
+      }
+    }
+  </div>
+</div>

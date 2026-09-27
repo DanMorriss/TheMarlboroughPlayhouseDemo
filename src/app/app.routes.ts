@@ -3,7 +3,8 @@ import { Router, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
-import { BookingPageComponent } from './pages/booking-page/booking-page.component';
+import { EventsPageComponent } from './pages/events-page/events-page.component';
+import { EventPageComponent } from './pages/event-page/event-page.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
 export const routes: Routes = [
@@ -28,10 +29,21 @@ export const routes: Routes = [
         component: HomePageComponent,
         canActivate: [() => inject(Router).createUrlTree(['/home'], { fragment: 'contact' })]
     },
-    { 
-        path: 'booking',
-        component: BookingPageComponent,
+    {
+        path: 'events',
+        component: EventsPageComponent,
         title: 'Events - The Marlborough Playhouse'
+    },
+    {
+        // Title is set from the event once it has loaded
+        path: 'events/:id',
+        component: EventPageComponent,
+        title: 'Events - The Marlborough Playhouse'
+    },
+    {
+        // Old address for the events page
+        path: 'booking',
+        redirectTo: 'events'
     },
     {
         // Private hire now lives on the home page; keep old links working

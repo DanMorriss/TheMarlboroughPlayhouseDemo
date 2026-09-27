@@ -1,0 +1,87 @@
+<app-navbar></app-navbar>
+
+<div class="px-[16px] pt-[16px] md:pt-[32px] pb-[48px] md:pb-[72px] text-[16px]/[26px] md:text-[19px]/[30px]">
+  <div class="max-w-[900px] mx-auto">
+    <a routerLink="/events" class="back-link">‹ All events</a>
+
+    @switch (status()) {
+      @case ('loading') {
+        <p class="event-message">Loading event…</p>
+      }
+      @case ('not-found') {
+        <p class="event-message">
+          Sorry, we couldn't find that event. It may have finished or been
+          cancelled. Have a look at our <a routerLink="/events">other events</a>.
+        </p>
+      }
+      @case ('error') {
+        <p class="event-message">
+          We couldn't load this event just now. You can still
+          <a [href]="bookwhenUrl()" target="_blank" rel="noopener">book it on our booking page</a>.
+        </p>
+      }
+      @case ('ready') {
+        @if (event(); as event) {
+          <h1 class="section-heading">{{ event.title }}</h1>
+
+          <div class="event-summary-card">
+            @if (event.imageUrl) {
+              <img [src]="event.imageUrl" [alt]="event.title" class="event-image" />
+            }
+
+            <ul class="event-facts">
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                </svg>
+                {{ fullDate(event) }}
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+                {{ timeRange(event) }}
+              </li>
+              @if (priceLabel(event); as price) {
+                <li>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.121 7.629A3 3 0 0 0 9.017 9.43c-.023.212-.002.425.028.636l.506 3.541a4.5 4.5 0 0 1-.43 2.65L9 16.5l1.539-.513a2.25 2.25 0 0 1 1.422 0l.655.218a2.25 2.25 0 0 0 1.718-.122L15 15.75M8.25 12H12m9 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
+                  {{ price }}
+                </li>
+              }
+              @if (spacesLabel(event); as spaces) {
+                <li [class.event-full]="isFullyBooked(event)">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                  </svg>
+                  {{ spaces }}
+                </li>
+              }
+            </ul>
+
+            @for (paragraph of paragraphs(event.details); track $index) {
+              <p class="event-paragraph">{{ paragraph }}</p>
+            }
+          </div>
+        }
+      }
+    }
+
+    @if (bookingFrameUrl(); as frameUrl) {
+      @if (status() === 'ready') {
+        <h2 class="section-heading section-heading--spaced">Book your place</h2>
+
+        <div class="booking-frame">
+          <p class="booking-frame-loading" aria-hidden="true">Loading booking…</p>
+          <iframe [src]="frameUrl" title="Book this event"></iframe>
+        </div>
+
+        <p class="booking-fallback">
+          Having trouble booking?
+          <a [href]="bookwhenUrl()" target="_blank" rel="noopener">Open this event on our booking page</a>
+        </p>
+      }
+    }
+  </div>
+</div>

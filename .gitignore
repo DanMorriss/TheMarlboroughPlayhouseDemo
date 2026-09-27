@@ -40,3 +40,8 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Local secrets and Vercel config (never commit)
+.env
+.env*.local
+.vercel
