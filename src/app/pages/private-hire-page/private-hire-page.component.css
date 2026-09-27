@@ -1,0 +1,83 @@
+p {
+    margin: 0;
+}
+
+h3 {
+    font-size: 1.2em;
+    font-weight: 700;
+    margin: 0 0 4px;
+}
+
+.hire-lead {
+    font-size: 1.2em;
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+/* Two overlapping, slightly tilted photos in white frames (like the hero collage) */
+.hire-photos {
+    position: relative;
+    max-width: 520px;
+    margin: 0 auto;
+    aspect-ratio: 5 / 4;
+    width: 100%;
+}
+
+/* When stacked above the text, leave room for the front photo's overhang and drift */
+@media (max-width: 1023px) {
+    .hire-photos {
+        margin-bottom: 96px;
+    }
+}
+
+.hire-photo {
+    position: absolute;
+    width: 62%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border: 8px solid #fff;
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.hire-photo--back {
+    top: 0;
+    left: 0;
+    rotate: -4deg;
+}
+
+.hire-photo--front {
+    right: 0;
+    bottom: -12%;
+    width: 52%;
+    rotate: 5deg;
+}
+
+/* Price highlight */
+.price-badge {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 12px 24px;
+    border-radius: 16px;
+    background-color: #f1d0c3;
+}
+
+.price-badge strong {
+    font-size: 1.8em;
+    line-height: 1;
+}
+
+/* Cards sit on the light page background, so give them a white face */
+.hire-card {
+    background-color: #fff;
+}
+
+.hire-signoff {
+    font-weight: 600;
+}
+
+.hire-email {
+    font-size: 0.9em;
+    margin-top: 8px;
+}

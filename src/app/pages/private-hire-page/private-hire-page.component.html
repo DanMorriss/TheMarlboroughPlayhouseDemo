@@ -1,33 +1,94 @@
-<div
-  class="private-hire-background text-[16px]/[26px] sm:text-[19px]/[32px] md:text-[24px]/[40px] text-center py-[24px] md:py-[40px] px-[16px] max-w-[800px] mx-auto"
->
-  <p>
-    Looking for the perfect place to celebrate, gather or just enjoy exclusive
-    time with your little ones? You can hire The Playhouse all to yourself!
-  </p>
-  <p>
-    Whether it’s a birthday party, a special event, or just a private play
-    session with friends and family, our calm and beautiful space is available
-    for exclusive use, giving you full access to our play village, ball pit,
-    and cosy corners.
-  </p>
-  <h2 class="rainbow-text">Keep it simple…</h2>
-  <p>
-    Hire the space and enjoy relaxed playtime with snacks and coffees available
-    to buy from our café.
-  </p>
-  <h2 class="rainbow-text">... let us take care of everything</h2>
-  <p>
-    We can handle all the extras, from decorations, party bags and themed
-    invites to entertainment and sweet treats, so you can sit back and enjoy
-    the magic with your little one. Put together a bespoke package to suit you.
-  </p>
-  <p>Private hire starts from £150.</p>
-  <p>To find out more or book your event, email us at:</p>
-  <p>
-    <a href="mailto:info@themarlboroughplayhouse.com"
-      >info&#64;themarlboroughplayhouse.com</a
-    >
-  </p>
-  <p>We can’t wait to help you celebrate!</p>
+<div class="text-[16px]/[26px] md:text-[19px]/[30px] pt-[48px] md:pt-[72px] pb-[40px] md:pb-[64px] px-[16px]">
+  <div class="max-w-[1100px] mx-auto">
+    <h2 class="section-heading">Private hire</h2>
+
+    <!-- Intro: two overlapping photos beside the text -->
+    <div class="grid gap-10 lg:gap-16 lg:grid-cols-2 items-center">
+      <!-- Photos drift at different speeds as they pass through the screen -->
+      <div class="hire-photos">
+        <img
+          src="assets/images/ph-11.jpeg"
+          alt="Café tables in the main hall with the play village behind"
+          class="hire-photo hire-photo--back"
+          [appParallax]="0.08"
+          parallaxFrom="viewport"
+          loading="lazy"
+        />
+        <img
+          src="assets/images/ph-13.jpeg"
+          alt="A sunlit wooden bridge leading through an archway in the play village"
+          class="hire-photo hire-photo--front"
+          [appParallax]="0.22"
+          parallaxFrom="viewport"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="space-y-4 text-center lg:text-left">
+        <p class="hire-lead">
+          Looking for the perfect place to celebrate, gather or just enjoy
+          exclusive time with your little ones? You can hire The Playhouse all
+          to yourself!
+        </p>
+        <p>
+          Whether it's a birthday party, a special event, or just a private play
+          session with friends and family, our calm and beautiful space is
+          available for exclusive use, giving you full access to our play
+          village, ball pit and cosy corners.
+        </p>
+        <div class="price-badge" [appPopIn]="0">
+          <span>Private hire from</span>
+          <strong>£250</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two ways to hire -->
+    <div class="grid gap-6 md:grid-cols-2 mt-[64px] lg:mt-[96px]">
+      <div class="feature-card hire-card" [appPopIn]="0">
+        <img src="assets/images/ph-14.jpeg" alt="Little white tables and chairs with bunny ear backs" loading="lazy" />
+        <div class="feature-card-body">
+          <h3>Keep it simple…</h3>
+          <p>
+            Hire the space and enjoy relaxed playtime with snacks and coffees
+            available to buy from our café.
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-card hire-card" [appPopIn]="120">
+        <img src="assets/images/ph-17.jpeg" alt="Colourful flower-shaped porthole windows in the play village" loading="lazy" />
+        <div class="feature-card-body">
+          <h3>…or let us take care of everything</h3>
+          <p>
+            We can handle all the extras, from decorations, party bags and themed
+            invites to entertainment and sweet treats, so you can sit back and
+            enjoy the magic with your little one. Put together a bespoke package
+            to suit you.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enquiry -->
+    <div class="text-center mt-[48px] md:mt-[64px] space-y-5">
+      <p>To find out more or book your event, drop us an email.</p>
+      <a
+        href="mailto:info@themarlboroughplayhouse.com?subject=Private%20hire%20enquiry"
+        class="contact-button contact-button--email"
+        [appPopIn]="0"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+          />
+        </svg>
+        Email us about private hire
+      </a>
+      <p class="hire-email">info&#64;themarlboroughplayhouse.com</p>
+      <p class="hire-signoff">We can't wait to help you celebrate!</p>
+    </div>
+  </div>
 </div>
