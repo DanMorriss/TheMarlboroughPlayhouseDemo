@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="navbar" #header aria-label="Main">
   <div class="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center px-4 py-2 md:px-[60px] md:py-[20px]">
     <div></div>
 
@@ -42,31 +42,13 @@
 
   <!-- Desktop Nav -->
   <ul class="desktop-nav-list hidden md:flex flex-row items-center justify-center list-none">
-    <li class="links">
-      <a routerLink="/home">
-        <span class="rainbow-text nav-image">HOME</span>
-      </a>
-    </li>
-    <li class="links">
-      <a routerLink="/home" fragment="plan-your-visit">
-        <span class="rainbow-text nav-image">PLAN YOUR VISIT</span>
-      </a>
-    </li>
-    <li class="links">
-      <a routerLink="/home" fragment="private-hire">
-        <span class="rainbow-text nav-image">PRIVATE HIRE</span>
-      </a>
-    </li>
-    <li class="links">
-      <a routerLink="/home" fragment="contact">
-        <span class="rainbow-text nav-image">CONTACT</span>
-      </a>
-    </li>
-    <li class="links">
-      <a routerLink="/booking">
-        <span class="rainbow-text nav-image">EVENTS</span>
-      </a>
-    </li>
+    @for (link of links; track link.label) {
+      <li class="links">
+        <a [routerLink]="link.path" [fragment]="link.fragment">
+          <span class="rainbow-text nav-image">{{ link.label }}</span>
+        </a>
+      </li>
+    }
   </ul>
 
   <!-- Mobile Nav: always rendered so it can slide open and closed; inert while closed -->
@@ -78,32 +60,81 @@
   >
     <div class="mobile-nav-clip">
       <ul class="mobile-nav-list list-none">
-        <li>
-          <a routerLink="/home" (click)="closeMenu()">
-            <span class="rainbow-text nav-image-mobile">HOME</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/home" fragment="plan-your-visit" (click)="closeMenu()">
-            <span class="rainbow-text nav-image-mobile">PLAN YOUR VISIT</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/home" fragment="private-hire" (click)="closeMenu()">
-            <span class="rainbow-text nav-image-mobile">PRIVATE HIRE</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/home" fragment="contact" (click)="closeMenu()">
-            <span class="rainbow-text nav-image-mobile">CONTACT</span>
-          </a>
-        </li>
-        <li>
-          <a routerLink="/booking" (click)="closeMenu()">
-            <span class="rainbow-text nav-image-mobile">EVENTS</span>
-          </a>
-        </li>
+        @for (link of links; track link.label) {
+          <li>
+            <a [routerLink]="link.path" [fragment]="link.fragment" (click)="closeMenu()">
+              <span class="rainbow-text nav-image-mobile">{{ link.label }}</span>
+            </a>
+          </li>
+        }
       </ul>
     </div>
   </div>
 </nav>
+
+<!-- Compact bar that slides in from the top when scrolling back up the page -->
+<div
+  class="sticky-bar"
+  [class.sticky-bar--visible]="stickyVisible()"
+  [attr.inert]="stickyVisible() ? null : ''"
+>
+  <nav class="sticky-bar-inner" aria-label="Main (compact)">
+    <a routerLink="/home" class="shrink-0" (click)="closeStickyMenu()">
+      <img src="assets/logos/title.svg" alt="The Marlborough Playhouse Logo" class="h-[44px] w-auto" />
+    </a>
+
+    <ul class="hidden md:flex flex-row items-center list-none m-0 p-0">
+      @for (link of links; track link.label) {
+        <li class="links links--compact">
+          <a [routerLink]="link.path" [fragment]="link.fragment">
+            <span class="rainbow-text nav-image nav-image--compact">{{ link.label }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+
+    <button
+      type="button"
+      class="menu-button md:hidden"
+      (click)="toggleStickyMenu()"
+      [attr.aria-expanded]="stickyMenuOpen()"
+      aria-controls="sticky-mobile-nav"
+      aria-label="Toggle navigation menu"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        stroke-linecap="round"
+        class="menu-icon"
+        [class.menu-icon--open]="stickyMenuOpen()"
+        aria-hidden="true"
+      >
+        <path class="menu-icon-top" d="M3.75 6.75h16.5" />
+        <path class="menu-icon-middle" d="M3.75 12h16.5" />
+        <path class="menu-icon-bottom" d="M3.75 17.25h16.5" />
+      </svg>
+    </button>
+  </nav>
+
+  <div
+    id="sticky-mobile-nav"
+    class="mobile-nav"
+    [class.mobile-nav--open]="stickyMenuOpen()"
+    [attr.inert]="stickyMenuOpen() ? null : ''"
+  >
+    <div class="mobile-nav-clip">
+      <ul class="mobile-nav-list list-none">
+        @for (link of links; track link.label) {
+          <li>
+            <a [routerLink]="link.path" [fragment]="link.fragment" (click)="closeStickyMenu()">
+              <span class="rainbow-text nav-image-mobile">{{ link.label }}</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>
