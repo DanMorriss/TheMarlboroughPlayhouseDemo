@@ -9,9 +9,9 @@ import { Component, input } from '@angular/core';
 })
 export class BookingCardComponent {
     title = input<string>('Card Title');
-    imageUrl? = input<string>();
-    description? = input<string>();
-    price? = input<number>();
+    imageUrl = input<string | undefined>(undefined);
+    description = input<string | undefined>(undefined);
+    price = input<string | undefined>(undefined);
     buttonText = input<string>('Book Now');
 
     bookNow() {

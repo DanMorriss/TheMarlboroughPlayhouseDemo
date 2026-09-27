@@ -7,6 +7,7 @@ html {
     font-family: "Raleway", sans-serif;
     color: #545454; /* Text color */
     background-color: #f9f3f3;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 body {

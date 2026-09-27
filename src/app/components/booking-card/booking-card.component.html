@@ -1,10 +1,15 @@
-<div>
-  <h2>{{ title() }}</h2>
-  <img [src]="imageUrl" alt="{{ title() }}" />
-  @if (description) {
-  <p>{{ description() }}</p>
-  } @if (price) {
-  <p>From {{ price() }}</p>
+<div class="booking-card">
+  <h2 class="card-title">{{ title() }}</h2>
+  @if (imageUrl()) {
+    <img class="card-image" [src]="imageUrl()" [alt]="title()" />
+  } @else {
+    <div class="card-image-placeholder"></div>
+  }
+  @if (description()) {
+    <p class="card-description">{{ description() }}</p>
+  }
+  @if (price()) {
+    <p class="card-price">{{ price() }}</p>
   }
   <button (click)="bookNow()" class="booking-button">{{ buttonText() }}</button>
 </div>

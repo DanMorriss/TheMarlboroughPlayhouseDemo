@@ -1,0 +1,16 @@
+.booking-page {
+  padding: 2rem;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding-bottom: 3rem;
+}

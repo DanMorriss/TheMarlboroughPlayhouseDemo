@@ -1,24 +1,55 @@
-.container {
-    margin-top: 20px;
-    margin-left: 60px;
-}
-
-.title-link {
-    margin-left: 50px;
-    margin-right: 50px;
+.navbar {
+    width: 100%;
 }
 
 .links {
     margin: 0 20px;
 }
 
+.desktop-nav-list {
+    margin: 0;
+    padding: 0 0 20px;
+}
+
 .nav-image {
-    font-size: 2.25rem;
-    margin-right: 50px;
+    font-size: 1.75rem;
     transition: transform 300ms;
     display: inline-block;
 }
 
 .nav-image:hover {
     transform: rotate(10deg);
+}
+
+@media (min-width: 768px) {
+    .nav-image {
+        font-size: 2.25rem;
+    }
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: #545454;
+}
+
+.menu-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.mobile-nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin: 0;
+    padding: 8px 0 24px;
+}
+
+.nav-image-mobile {
+    font-size: 1.5rem;
+    display: inline-block;
 }

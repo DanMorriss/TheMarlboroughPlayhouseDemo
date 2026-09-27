@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RainbowTextDirective } from '../../directives/rainbow-text.directive';
 
@@ -9,4 +9,14 @@ import { RainbowTextDirective } from '../../directives/rainbow-text.directive';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  menuOpen = signal(false);
+
+  toggleMenu() {
+    this.menuOpen.update((open) => !open);
+  }
+
+  closeMenu() {
+    this.menuOpen.set(false);
+  }
+}

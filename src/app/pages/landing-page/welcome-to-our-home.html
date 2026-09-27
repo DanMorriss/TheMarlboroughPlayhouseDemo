@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Our Home</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Lato", sans-serif;
+        background: #f5f0e8;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        background: #faf7f2;
+        padding: 14mm 16mm 14mm;
+        position: relative;
+        box-shadow: 0 4px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Decorative border */
+      .page::before {
+        content: "";
+        position: absolute;
+        top: 8mm;
+        left: 8mm;
+        right: 8mm;
+        bottom: 8mm;
+        border: 0.5px solid #c8b89a;
+        pointer-events: none;
+      }
+
+      /* Header */
+      .header {
+        text-align: center;
+        padding-bottom: 6mm;
+        border-bottom: 1px solid #c8b89a;
+        margin-bottom: 6mm;
+      }
+
+      .header-eyebrow {
+        font-family: "Lato", sans-serif;
+        font-size: 8px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #9a7f5a;
+        margin-bottom: 3mm;
+      }
+
+      .header h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 26px;
+        font-weight: 400;
+        color: #2c2418;
+        line-height: 1.2;
+        margin-bottom: 2mm;
+      }
+
+      .header-sub {
+        font-family: "Lato", sans-serif;
+        font-size: 11px;
+        font-weight: 300;
+        color: #7a6b55;
+        letter-spacing: 1px;
+      }
+
+      /* Two column layout */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6mm;
+        margin-bottom: 5mm;
+      }
+
+      /* Photo */
+      .photo-block {
+        position: relative;
+      }
+
+      .photo-block img {
+        width: 100%;
+        height: 52mm;
+        object-fit: cover;
+        object-position: center 30%;
+        display: block;
+        filter: sepia(20%) contrast(1.05);
+      }
+
+      .photo-caption {
+        font-family: "Lato", sans-serif;
+        font-size: 8px;
+        font-weight: 300;
+        color: #9a7f5a;
+        font-style: italic;
+        text-align: center;
+        margin-top: 1.5mm;
+        letter-spacing: 0.5px;
+      }
+
+      /* Intro text block */
+      .intro-block {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .intro-block p {
+        font-size: 10.5px;
+        line-height: 1.75;
+        color: #3d3225;
+        font-weight: 300;
+      }
+
+      /* Sections */
+      .section {
+        margin-bottom: 4.5mm;
+      }
+
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: 12px;
+        font-weight: 600;
+        color: #2c2418;
+        letter-spacing: 0.5px;
+        margin-bottom: 2mm;
+        padding-bottom: 1.5mm;
+        border-bottom: 0.5px solid #c8b89a;
+        display: flex;
+        align-items: center;
+        gap: 3mm;
+      }
+
+      .section-title::before {
+        content: "";
+        display: inline-block;
+        width: 3px;
+        height: 12px;
+        background: #9a7f5a;
+        flex-shrink: 0;
+      }
+
+      .section p {
+        font-size: 10px;
+        line-height: 1.75;
+        color: #3d3225;
+        font-weight: 300;
+      }
+
+      /* Three column sections at bottom */
+      .three-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 5mm;
+        margin-bottom: 4.5mm;
+      }
+
+      /* Footer sign-off */
+      .signoff {
+        text-align: center;
+        padding-top: 5mm;
+        border-top: 1px solid #c8b89a;
+        margin-top: 2mm;
+      }
+
+      .signoff p {
+        font-family: "Playfair Display", serif;
+        font-size: 11px;
+        font-style: italic;
+        color: #7a6b55;
+        line-height: 1.7;
+      }
+
+      .ornament {
+        color: #9a7f5a;
+        font-size: 14px;
+        margin: 1mm 0;
+      }
+
+      @media print {
+        body {
+          background: none;
+          padding: 0;
+        }
+        .page {
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="header">
+        <div class="header-eyebrow">A note for visitors</div>
+        <h1>Welcome to Our Home</h1>
+        <div class="header-sub">Dan &amp; Selina &nbsp;·&nbsp; Marlborough</div>
+      </div>
+
+      <div class="two-col">
+        <div class="intro-block">
+          <p>
+            We bought this house in 2019, when it was just Dan, Selina, and our
+            dog Auggie. Since then, our little family has grown to include Bilby
+            (dog number two) and our daughter Molly.
+          </p>
+          <br />
+          <p>
+            We've loved every moment here, but with Selina's parents wanting to
+            visit more from Ireland and hopes of expanding our family further,
+            we're looking for a little more space — which brings us to today.
+          </p>
+        </div>
+        <div class="photo-block">
+          <img
+            src="data:image/jpeg;base64,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"
+            alt="Historical photo of the house"
+          />
+          <p class="photo-caption">
+            The bakery, circa 1880–1890 — brought by a visitor from New Zealand
+            whose great-grandfather worked here
+          </p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">A Little History</div>
+        <p>
+          Built between 1870 and 1890, this house was originally a bakery. The
+          original fireplace now houses a log burner, but you can still see all
+          the levels from the old oven built into the brickwork. There's also a
+          local story that some of the beams were salvaged from ships — and
+          whether or not that's true, it's hard not to look at the carpenter's
+          marks still visible on the kitchen beams and wonder where they've
+          been. A few years ago, a visitor from New Zealand whose
+          great-grandfather worked in the bakery came to have a look around; he
+          brought along the photograph above.
+        </p>
+      </div>
+
+      <div class="three-col">
+        <div class="section">
+          <div class="section-title">The Location</div>
+          <p>
+            One of the things we'll miss most is walking into town — our record
+            is three trips to Waitrose in a single morning after forgetting
+            ingredients for the Sunday roast. We've also been spoilt with the
+            walks on our doorstep. Stonebridge Nature Reserve, the common and
+            the forest are all just a few minutes away — two very happy dogs, no
+            need to drive anywhere for a proper stretch of the legs.
+          </p>
+        </div>
+        <div class="section">
+          <div class="section-title">The Garden</div>
+          <p>
+            In summer we practically live outside. The garden is full of
+            visiting birds, with a resident pigeon that nests in the conifer
+            each year. During lockdown we added a garden office with electricity
+            and internet — a real asset. <em>A note on planning:</em> there has
+            historically been permission to extend out to the end of the stone
+            patio. It has since lapsed (we never felt we needed it), but it's
+            something a future owner could explore.
+          </p>
+        </div>
+        <div class="section">
+          <div class="section-title">Why We'll Miss It</div>
+          <p>
+            There's a character to this house you can't manufacture — the uneven
+            floors, the thick walls, the way it stays cool in the summer. Our
+            favourite memories are Christmas dinners: somehow squeezing 18
+            people around the kitchen table, everyone talking over each other,
+            the log burner going, nobody wanting to leave. That's the magic of
+            this place, and we hope whoever moves in next gets to feel it too.
+          </p>
+        </div>
+      </div>
+
+      <div class="signoff">
+        <div class="ornament">— ✦ —</div>
+        <p>
+          Thank you so much for coming to see our home. We hope it feels as
+          special to you as it has to us.<br />Please do ask if there's anything
+          you'd like to know — we're happy to chat.
+        </p>
+        <div class="ornament" style="margin-top: 2mm">Dan &amp; Selina</div>
+      </div>
+    </div>
+  </body>
+</html>

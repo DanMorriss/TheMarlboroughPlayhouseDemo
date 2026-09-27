@@ -1,44 +1,92 @@
-<!-- Desktop Nav -->
-<div class="flex flex-row container">
-  <a routerLink="/home" class="title-link">
-    <img
-      src="assets/logos/title.svg"
-      alt="The Marlborough Playhouse Logo"
-      class="h-[150px] w-auto"
-    />
-  </a>
-  <ul class="flex flex-row items-center justify-content-between list-none">
-    <li class="mr-4 links">
+<nav class="navbar">
+  <div class="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center px-4 py-2 md:px-[60px] md:py-[20px]">
+    <div></div>
+
+    <a routerLink="/home" class="shrink-0 justify-self-center" (click)="closeMenu()">
+      <img
+        src="assets/logos/title.svg"
+        alt="The Marlborough Playhouse Logo"
+        class="h-[70px] w-auto md:h-[150px]"
+      />
+    </a>
+
+    <div class="flex flex-row items-center justify-end">
+      <!-- Mobile menu toggle -->
+      <button
+        type="button"
+        class="menu-button md:hidden"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="menuOpen()"
+        aria-label="Toggle navigation menu"
+      >
+        @if (!menuOpen()) {
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="menu-icon"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"
+            />
+          </svg>
+        } @else {
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="menu-icon"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        }
+      </button>
+    </div>
+  </div>
+
+  <!-- Desktop Nav -->
+  <ul class="desktop-nav-list hidden md:flex flex-row items-center justify-center list-none">
+    <li class="links">
       <a routerLink="/home">
         <span class="rainbow-text nav-image">HOME</span>
-        <!-- <img
-          src="assets/logos/home-title.svg"
-          alt="Home"
-          class="h-[50px] w-auto hover:rotate-10 transform transition duration-300"
-      /> -->
       </a>
     </li>
-    <li class="mr-4 links">
+    <li class="links">
       <a routerLink="/booking">
         <span class="rainbow-text nav-image">BOOKING</span>
-        <!-- <img
-          src="assets/logos/booking-title.svg"
-          alt="Booking"
-          class="nav-image"
-      /> -->
       </a>
     </li>
-    <li class="mr-4 links">
+    <li class="links">
       <a routerLink="/private-hire">
         <span class="rainbow-text nav-image">PRIVATE HIRE</span>
-        <!-- <img
-          src="assets/logos/private-hire-title.svg"
-          alt="Private Hire"
-          class="h-[50px] w-auto hover:rotate-10 transform transition duration-300"
-      /> -->
       </a>
     </li>
   </ul>
-</div>
 
-<!-- Mobile Nav -->
+  <!-- Mobile Nav -->
+  @if (menuOpen()) {
+    <ul class="mobile-nav-list list-none md:hidden">
+      <li>
+        <a routerLink="/home" (click)="closeMenu()">
+          <span class="rainbow-text nav-image-mobile">HOME</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/booking" (click)="closeMenu()">
+          <span class="rainbow-text nav-image-mobile">BOOKING</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/private-hire" (click)="closeMenu()">
+          <span class="rainbow-text nav-image-mobile">PRIVATE HIRE</span>
+        </a>
+      </li>
+    </ul>
+  }
+</nav>

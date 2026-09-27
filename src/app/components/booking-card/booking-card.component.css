@@ -1,0 +1,69 @@
+.booking-card {
+  background-color: #f1c2af;
+  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+  padding: 2.5rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 340px;
+  text-align: center;
+  transition: border-radius 0.4s ease;
+  font-family: "Raleway", sans-serif;
+  color: #545454;
+}
+
+.booking-card:hover {
+  border-radius: 35% 55% 40% 60% / 60% 40% 55% 45%;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.card-image {
+  width: 85%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50% 40% 50% 40% / 40% 50% 40% 50%;
+}
+
+.card-image-placeholder {
+  width: 85%;
+  height: 200px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50% 40% 50% 40% / 40% 50% 40% 50%;
+}
+
+.card-description {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.card-price {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.booking-button {
+  background-color: #fbe2cc;
+  border: none;
+  border-radius: 45% 55% 40% 50% / 55% 45% 60% 40%;
+  padding: 0.85rem 2.2rem;
+  font-size: 1.15rem;
+  font-family: "Raleway", sans-serif;
+  color: #545454;
+  cursor: pointer;
+  margin-top: auto;
+  margin-bottom: -2rem;
+  position: relative;
+  z-index: 1;
+  transition: border-radius 0.4s ease;
+}
+
+.booking-button:hover {
+  filter: brightness(0.95);
+  border-radius: 55% 45% 50% 50% / 45% 55% 45% 55%;
+}
