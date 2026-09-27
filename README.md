@@ -1,74 +1,115 @@
-You are an expert in TypeScript, Angular, and scalable web application development. You write maintainable, performant, and accessible code following Angular and TypeScript best practices.
+# The Marlborough Playhouse
 
-## TypeScript Best Practices
+Website for The Marlborough Playhouse, an indoor play café for 0-6s in central Marlborough.
 
-- Use strict type checking
-- Prefer type inference when the type is obvious
-- Avoid the `any` type; use `unknown` when type is uncertain
+**Live site:** [themarlboroughplayhouse.com](https://themarlboroughplayhouse.com)
 
-## Angular Best Practices
+Built with Angular 17, TypeScript and Tailwind CSS, and deployed on Vercel.
 
-- Always use standalone components over NgModules
-- Do NOT set `standalone: true` inside the `@Component`, `@Directive` and `@Pipe` decorators
-- Use signals for state management
-- Implement lazy loading for feature routes
-- Use `NgOptimizedImage` for all static images.
-- Do NOT use the `@HostBinding` and `@HostListener` decorators. Put host bindings inside the `host` object of the `@Component` or `@Directive` decorator instead
+## Features
 
-## Components
+- **Single-page home** with Plan your visit, Private hire and Contact sections. The nav links smooth-scroll to each section.
+- **Live events** pulled from the [Bookwhen](https://bookwhen.com) booking system and shown as site-styled cards. Each event has its own page with the Bookwhen booking widget for that event.
+- **Cookie consent** in line with UK rules (PECR). MailerLite's tracking script only loads after the visitor accepts, and the choice can be changed from the footer or the cookie policy page.
+- **Mailing list popup** that posts straight to a MailerLite form, so it works without cookies or third-party scripts.
+- **Scroll interactions** without animation libraries:
+  - a parallax photo collage
+  - a hero section that sinks behind an illustrated town skyline
+  - cards and buttons that pop in as they come into view
+  - a compact nav bar that slides in when scrolling back up
+- **Accessibility:** reduced-motion support throughout, keyboard-accessible menus and dialogs, and layouts tested from phone to desktop.
 
-- Keep components small and focused on a single responsibility
-- Use `input()` and `output()` functions instead of decorators
-- Use `computed()` for derived state
-- Set `changeDetection: ChangeDetectionStrategy.OnPush` in `@Component` decorator
-- Prefer inline templates for small components
-- Prefer Reactive forms instead of Template-driven ones
-- Do NOT use `ngClass`, use `class` bindings instead
-- DO NOT use `ngStyle`, use `style` bindings instead
+## Tech stack
 
-## State Management
+- [Angular 17](https://angular.dev) (standalone components, signals, built-in control flow)
+- TypeScript
+- [Tailwind CSS 3](https://tailwindcss.com) plus component CSS
+- [Vercel](https://vercel.com) hosting and serverless functions
+- [Bookwhen API v2](https://api.bookwhen.com/v2) for events
+- [MailerLite](https://www.mailerlite.com) for the mailing list
 
-- Use signals for local component state
-- Use `computed()` for derived state
-- Keep state transformations pure and predictable
-- Do NOT use `mutate` on signals, use `update` or `set` instead
+## Getting started
 
-## Templates
+### Prerequisites
 
-- Keep templates simple and avoid complex logic
-- Use native control flow (`@if`, `@for`, `@switch`) instead of `*ngIf`, `*ngFor`, `*ngSwitch`
-- Use the async pipe to handle observables
+- Node.js 22.18 or newer. The local API server runs the TypeScript function in `api/` directly, which needs Node's built-in TypeScript support.
+- A Bookwhen API token (from your Bookwhen account settings), for the events pages.
 
-## Services
+### Setup
 
-- Design services around a single responsibility
-- Use the `providedIn: 'root'` option for singleton services
-- Use the `inject()` function instead of constructor injection
+```bash
+npm install
+```
 
-# TheMarlboroughPlayhouse
+Create a `.env.local` file in the project root. It's gitignored, so it won't be committed.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
+```bash
+BOOKWHEN_API_TOKEN=your-bookwhen-api-token
+```
 
-## Development server
+### Scripts
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Runs the site at `http://localhost:4200` along with a local copy of the `/api` functions. Use this for anything involving events. |
+| `npm start` | Runs the site only. Everything works except the events pages. |
+| `npm run build` | Production build into `dist/`. |
+| `npm test` | Unit tests with Karma. |
 
-## Code scaffolding
+## How it works
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Events (Bookwhen)
 
-## Build
+```
+Browser  ->  /api/events (Vercel function)  ->  Bookwhen API
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- `api/events.ts` fetches events from Bookwhen using the `BOOKWHEN_API_TOKEN` environment variable, so the token never reaches the browser.
+- It returns only the fields the site displays, validates event ids, and hides Bookwhen's error details.
+- Responses are cached on Vercel's CDN for 5 minutes, so changes in Bookwhen appear on the site within a few minutes.
+- `/events` lists upcoming events. `/events/:id` shows one event and embeds Bookwhen's booking widget for it.
+- Locally, `scripts/dev-api.mjs` runs the same function, and `proxy.conf.json` sends `/api` requests from the Angular dev server to it.
 
-## Running unit tests
+### Cookies and the mailing list
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- `ConsentService` stores the visitor's choice and only injects MailerLite's universal script after they accept. If they later reject, it clears what MailerLite stored and reloads the page.
+- `NewsletterService` posts sign-ups straight to the MailerLite form endpoint, which accepts requests from any site. The popup opens by itself once, 15 seconds after the visitor accepts cookies, and never on event booking pages. Visitors who reject cookies can still sign up from the footer link.
+- The cookie policy page (`/cookie-policy`) lists everything the site stores. Keep it up to date if you add anything that sets cookies or uses browser storage, such as analytics.
 
-## Running end-to-end tests
+### Directives
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+| Directive | Use |
+| --- | --- |
+| `appParallax` | Moves an element at a different speed from the page while scrolling. Use `parallaxFrom="viewport"` for elements further down the page. |
+| `appPopIn` | Pops an element in the first time it scrolls into view, with an optional delay for staggering. |
+| `appRainbowText` / `.rainbow-text` | Gives each letter a random colour from the brand palette. |
 
-## Further help
+All animations respect the visitor's reduced-motion setting.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Project structure
+
+```
+api/                 Vercel serverless functions (with their own tsconfig.json)
+scripts/             Local development helpers
+src/app/
+  components/        Navbar, footer, cookie banner, mailing list popup
+  consent/           Cookie consent service
+  directives/        Parallax, pop-in and rainbow text
+  events/            Events service, types and display helpers
+  newsletter/        Mailing list service
+  pages/             Home page sections, events, event and cookie policy pages
+src/assets/          Images, logos and documents
+vercel.json          Sends page routes to the Angular app so direct links work
+```
+
+## Deployment
+
+The site deploys to Vercel automatically when changes are pushed to `main`.
+
+- Set `BOOKWHEN_API_TOKEN` in the Vercel project's Environment Variables (Production and Preview). Vercel only reads environment variables when it deploys, so redeploy after changing it.
+- `api/tsconfig.json` compiles the functions to CommonJS. The root `tsconfig.json` outputs ES modules for Angular, which would crash the functions on Vercel.
+- `vercel.json` rewrites page routes like `/events/...` to `index.html`, so links to them open directly instead of returning a 404.
+
+## Contributing with AI assistants
+
+Coding guidelines for AI assistants are in [AGENTS.md](AGENTS.md).

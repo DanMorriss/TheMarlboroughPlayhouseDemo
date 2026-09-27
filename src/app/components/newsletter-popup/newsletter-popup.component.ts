@@ -35,10 +35,13 @@ export class NewsletterPopupComponent implements OnDestroy {
       }
     }, { allowSignalWrites: true });
 
-    // Open once by itself, a while after the cookie banner has been answered
+    // Open once by itself, a while after cookies are accepted. Visitors who reject
+    // cookies aren't prompted, but can still sign up from the footer link.
     effect(() => {
       clearTimeout(this.autoOpenTimer);
-      if (this.consent.bannerOpen() || !this.newsletter.shouldAutoOpen()) return;
+      if (this.consent.consent() !== 'accepted' || this.consent.bannerOpen() || !this.newsletter.shouldAutoOpen()) {
+        return;
+      }
       this.autoOpenTimer = setTimeout(() => {
         // Don't interrupt someone in the middle of booking an event
         if (!this.router.url.startsWith('/events/') && !this.consent.bannerOpen()) {
