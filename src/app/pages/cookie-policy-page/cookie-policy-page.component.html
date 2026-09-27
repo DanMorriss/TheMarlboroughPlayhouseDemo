@@ -1,0 +1,175 @@
+<app-navbar></app-navbar>
+
+<div class="px-[16px] pt-[16px] md:pt-[32px] pb-[48px] md:pb-[72px] text-[16px]/[26px] md:text-[18px]/[30px]">
+  <article class="policy">
+    <h1 class="section-heading">Cookie policy</h1>
+
+    <p class="policy-meta">
+      The Marlborough Playhouse Ltd (Company No. 16585544)<br />
+      Last updated: 27 September 2026
+    </p>
+
+    <!-- Current choice, with a way to change it -->
+    <div class="policy-choice">
+      <p>
+        @switch (consent.consent()) {
+          @case ('accepted') {
+            You have <strong>accepted</strong> optional cookies.
+          }
+          @case ('rejected') {
+            You have <strong>rejected</strong> optional cookies.
+          }
+          @default {
+            You haven't made a choice about optional cookies yet.
+          }
+        }
+      </p>
+      <button type="button" class="contact-button contact-button--book" (click)="consent.openSettings()">
+        Change cookie settings
+      </button>
+    </div>
+
+    <section>
+      <h2>What are cookies?</h2>
+      <p>
+        Cookies are small files that websites save on your device. Websites can
+        also save small amounts of information in your browser's storage, which
+        works in a similar way. This policy covers both, and we call them all
+        "cookies" below.
+      </p>
+      <p>
+        We keep this to a minimum. We don't use any advertising or analytics
+        cookies, such as Google Analytics.
+      </p>
+    </section>
+
+    <section>
+      <h2>Cookies we always use</h2>
+      <p>
+        These are needed for the website to work, so they don't need your
+        consent.
+      </p>
+      <table class="policy-table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Set by</th>
+            <th scope="col">What it's for</th>
+            <th scope="col">How long it lasts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Name">tmph-cookie-consent</td>
+            <td data-label="Set by">Us</td>
+            <td data-label="What it's for">Remembers whether you accepted or rejected optional cookies.</td>
+            <td data-label="How long it lasts">Until you change your choice or clear your browser's data</td>
+          </tr>
+          <tr>
+            <td data-label="Name">tmph-newsletter</td>
+            <td data-label="Set by">Us</td>
+            <td data-label="What it's for">
+              Remembers that you've signed up to or closed our mailing list popup, so we don't
+              keep showing it.
+            </td>
+            <td data-label="How long it lasts">Until you clear your browser's data</td>
+          </tr>
+          <tr>
+            <td data-label="Name">_bookwhen_admin_session</td>
+            <td data-label="Set by">Bookwhen</td>
+            <td data-label="What it's for">
+              Only on our event booking pages. Makes the booking form and basket work.
+            </td>
+            <td data-label="How long it lasts">Until you close your browser</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Optional cookies</h2>
+      <p>
+        We only use these if you click "Accept" on our cookie banner. The website
+        works in exactly the same way if you reject them.
+      </p>
+      <table class="policy-table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Set by</th>
+            <th scope="col">What it's for</th>
+            <th scope="col">How long it lasts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Name">ml_guid</td>
+            <td data-label="Set by">MailerLite, our mailing list provider</td>
+            <td data-label="What it's for">
+              A random identifier that lets MailerLite recognise returning visitors, to help us
+              understand how people use our website.
+            </td>
+            <td data-label="How long it lasts">Until you reject optional cookies or clear your browser's data</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Other services on our website</h2>
+      <ul>
+        <li>
+          <strong>Google Maps.</strong> Our map is provided by Google. Google may
+          set its own cookies, for example if you're signed in to a Google
+          account or interact with the map.
+        </li>
+        <li>
+          <strong>Google Fonts.</strong> Our text font is loaded from Google. This
+          doesn't set cookies, but Google receives your device's IP address when
+          the font loads.
+        </li>
+        <li>
+          <strong>Mailing list sign-up.</strong> When you join our mailing list,
+          your email address is sent to MailerLite. Signing up doesn't set any
+          cookies, and you can unsubscribe at any time.
+        </li>
+      </ul>
+      <p>You can read more in each provider's own privacy policy:</p>
+      <ul>
+        <li><a href="https://www.mailerlite.com/legal/privacy-policy" target="_blank" rel="noopener">MailerLite privacy policy</a></li>
+        <li><a href="https://bookwhen.com/privacy" target="_blank" rel="noopener">Bookwhen privacy policy</a></li>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google privacy policy</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Managing your cookies</h2>
+      <p>
+        You can change your choice at any time using the "Change cookie
+        settings" button above, or "Cookie settings" at the bottom of every page.
+      </p>
+      <p>
+        You can also delete or block cookies in your browser's settings. The
+        <a href="https://ico.org.uk/for-the-public/online/cookies/" target="_blank" rel="noopener">Information Commissioner's Office</a>
+        has more about how cookies work and how to control them.
+      </p>
+    </section>
+
+    <section>
+      <h2>Changes to this policy</h2>
+      <p>
+        We'll update this page if we change the cookies we use. The date at the
+        top shows when it was last updated.
+      </p>
+    </section>
+
+    <section>
+      <h2>Contact us</h2>
+      <p>
+        If you have any questions about cookies on our website, email us at
+        <a href="mailto:info@themarlboroughplayhouse.com">info&#64;themarlboroughplayhouse.com</a>
+        or call 07908 052 734.
+      </p>
+    </section>
+  </article>
+</div>

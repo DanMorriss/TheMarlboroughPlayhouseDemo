@@ -5,6 +5,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { EventsPageComponent } from './pages/events-page/events-page.component';
 import { EventPageComponent } from './pages/event-page/event-page.component';
+import { CookiePolicyPageComponent } from './pages/cookie-policy-page/cookie-policy-page.component';
 
 export const routes: Routes = [
     {
@@ -39,6 +40,11 @@ export const routes: Routes = [
         path: 'events/:id',
         component: EventPageComponent,
         title: 'Events - The Marlborough Playhouse'
+    },
+    {
+        path: 'cookie-policy',
+        component: CookiePolicyPageComponent,
+        title: 'Cookie Policy - The Marlborough Playhouse'
     },
     {
         // Old address for the events page
