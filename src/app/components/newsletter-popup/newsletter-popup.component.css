@@ -49,33 +49,7 @@
   margin: 0 0 8px;
 }
 
-.newsletter-form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  text-align: left;
-}
-
-.newsletter-label {
-  font-weight: 600;
-  font-size: 15px;
-}
-
-.newsletter-form input {
-  width: 100%;
-  padding: 12px 16px;
-  border: 2px solid #f1d0c3;
-  border-radius: 12px;
-  background-color: #fff;
-  font: inherit;
-  color: inherit;
-}
-
-.newsletter-form input:focus {
-  outline: none;
-  border-color: #B8456B;
-}
-
+/* The "Close" button after signing up, styled like the form's submit button */
 .newsletter-submit {
   width: 100%;
   justify-content: center;
@@ -83,17 +57,6 @@
   border: none;
   cursor: pointer;
   font-size: 19px;
-}
-
-.newsletter-submit:disabled {
-  opacity: 0.7;
-  cursor: default;
-}
-
-.newsletter-error {
-  color: #B3261E;
-  font-size: 15px;
-  margin: 0 !important;
 }
 
 .newsletter-small {

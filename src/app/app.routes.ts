@@ -6,6 +6,7 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { EventsPageComponent } from './pages/events-page/events-page.component';
 import { EventPageComponent } from './pages/event-page/event-page.component';
 import { CookiePolicyPageComponent } from './pages/cookie-policy-page/cookie-policy-page.component';
+import { MailingListPageComponent } from './pages/mailing-list-page/mailing-list-page.component';
 
 export const routes: Routes = [
     {
@@ -45,6 +46,12 @@ export const routes: Routes = [
         path: 'cookie-policy',
         component: CookiePolicyPageComponent,
         title: 'Cookie Policy - The Marlborough Playhouse'
+    },
+    {
+        // Sign-up page for sharing on social media; not linked from the nav
+        path: 'mailing-list',
+        component: MailingListPageComponent,
+        title: 'Join Our Mailing List - The Marlborough Playhouse'
     },
     {
         // Old address for the events page
