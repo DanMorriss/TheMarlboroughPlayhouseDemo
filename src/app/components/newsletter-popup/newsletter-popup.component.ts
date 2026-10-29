@@ -2,6 +2,7 @@ import { Component, ElementRef, OnDestroy, ViewChild, effect, inject, signal } f
 import { Router } from '@angular/router';
 import { ConsentService } from '../../consent/consent.service';
 import { NewsletterService } from '../../newsletter/newsletter.service';
+import { NewsletterFormComponent } from '../newsletter-form/newsletter-form.component';
 
 // How long after the cookie banner is answered before the popup opens by itself
 const AUTO_OPEN_DELAY_MS = 15000;
@@ -9,6 +10,7 @@ const AUTO_OPEN_DELAY_MS = 15000;
 @Component({
   selector: 'app-newsletter-popup',
   standalone: true,
+  imports: [NewsletterFormComponent],
   templateUrl: './newsletter-popup.component.html',
   styleUrl: './newsletter-popup.component.css',
 })
@@ -19,7 +21,7 @@ export class NewsletterPopupComponent implements OnDestroy {
 
   @ViewChild('dialog', { static: true }) private dialog!: ElementRef<HTMLDialogElement>;
 
-  readonly status = signal<'idle' | 'sending' | 'success' | 'error'>('idle');
+  readonly subscribed = signal(false);
   private autoOpenTimer?: ReturnType<typeof setTimeout>;
 
   constructor() {
@@ -43,8 +45,10 @@ export class NewsletterPopupComponent implements OnDestroy {
         return;
       }
       this.autoOpenTimer = setTimeout(() => {
-        // Don't interrupt someone in the middle of booking an event
-        if (!this.router.url.startsWith('/events/') && !this.consent.bannerOpen()) {
+        // Don't interrupt someone in the middle of booking an event, or repeat the
+        // mailing list page's own form
+        const url = this.router.url;
+        if (!url.startsWith('/events/') && !url.startsWith('/mailing-list') && !this.consent.bannerOpen()) {
           this.newsletter.open();
         }
       }, AUTO_OPEN_DELAY_MS);
@@ -66,22 +70,11 @@ export class NewsletterPopupComponent implements OnDestroy {
 
   /** Back to an empty sign-up form (the email field is new each time it's shown). */
   signUpAgain() {
-    this.status.set('idle');
+    this.subscribed.set(false);
   }
 
   /** Clicking the dimmed area outside the popup closes it. */
   onBackdropClick(event: MouseEvent) {
     if (event.target === this.dialog.nativeElement) this.close();
-  }
-
-  async submit(event: Event, email: string) {
-    event.preventDefault();
-    this.status.set('sending');
-    try {
-      await this.newsletter.subscribe(email.trim());
-      this.status.set('success');
-    } catch {
-      this.status.set('error');
-    }
   }
 }

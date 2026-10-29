@@ -1,0 +1,22 @@
+<form class="newsletter-form" (submit)="submit($event, email.value)">
+  <label [for]="inputId()" class="newsletter-label">Email address</label>
+  <input
+    #email
+    [id]="inputId()"
+    type="email"
+    name="email"
+    autocomplete="email"
+    required
+    [disabled]="status() === 'sending'"
+  />
+  @if (status() === 'error') {
+    <p class="newsletter-error" role="alert">Sorry, something went wrong. Please try again.</p>
+  }
+  <button
+    type="submit"
+    class="contact-button contact-button--book newsletter-submit"
+    [disabled]="status() === 'sending'"
+  >
+    {{ status() === 'sending' ? 'Signing you up…' : 'Sign me up' }}
+  </button>
+</form>
