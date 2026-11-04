@@ -19,8 +19,8 @@
           <p class="events-message">No upcoming events right now. Check back soon!</p>
         } @else {
           <div class="grid gap-6 md:grid-cols-2">
-            @for (event of events(); track event.id; let i = $index) {
-              <article class="event-card" [appPopIn]="(i % 2) * 120">
+            @for (event of events(); track event.id) {
+              <article class="event-card">
                 @if (event.imageUrl) {
                   <img [src]="event.imageUrl" [alt]="event.title" class="event-card-image" loading="lazy" />
                 }

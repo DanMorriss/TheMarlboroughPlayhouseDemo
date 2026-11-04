@@ -1,7 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { PopInDirective } from '../../directives/pop-in.directive';
 import {
   EventsService,
   SiteEvent,
@@ -19,7 +18,7 @@ import {
 @Component({
   selector: 'app-events-page',
   standalone: true,
-  imports: [NavbarComponent, RouterLink, PopInDirective],
+  imports: [NavbarComponent, RouterLink],
   templateUrl: './events-page.component.html',
   styleUrl: './events-page.component.css',
 })
