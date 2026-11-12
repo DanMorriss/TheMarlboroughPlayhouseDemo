@@ -34,21 +34,31 @@
   border-radius: 50%;
   background: none;
   cursor: pointer;
-  box-shadow: 0 10px 24px rgba(84, 84, 84, 0.16);
   animation: sponsor-float 8s ease-in-out infinite;
-  transition: box-shadow 200ms ease;
 }
 
-.sponsor-bubble img {
+/* The visible bubble; popping and re-forming animate this, not the button */
+.sponsor-bubble-body {
+  position: relative;
   display: block;
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 10px 24px rgba(84, 84, 84, 0.16);
+  transition:
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 200ms ease;
+}
+
+.sponsor-bubble-body img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
 /* Glossy highlight so the logos read as bubbles */
-.sponsor-bubble::after {
+.sponsor-bubble-body::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -57,26 +67,121 @@
   background:
     radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.55) 0, rgba(255, 255, 255, 0) 22%),
     radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0) 62%, rgba(255, 255, 255, 0.35) 72%);
-  transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.sponsor-bubble:hover img,
-.sponsor-bubble:hover::after {
+.sponsor-bubble:hover .sponsor-bubble-body {
   transform: scale(1.06);
-}
-
-.sponsor-bubble:hover {
   box-shadow: 0 14px 30px rgba(84, 84, 84, 0.22);
 }
 
-.sponsor-bubble:active img,
-.sponsor-bubble:active::after {
+.sponsor-bubble:active .sponsor-bubble-body {
   transform: scale(0.97);
 }
 
 .sponsor-bubble:focus-visible {
   outline: 3px solid #545454;
   outline-offset: 4px;
+}
+
+/* Pop: the bubble snaps inwards and vanishes (ease-in, so it accelerates into
+   nothing) while the streaks spray out. It stays hidden while its dialog is open. */
+.sponsor-bubble--popped .sponsor-bubble-body {
+  animation: sponsor-bubble-pop 180ms forwards;
+}
+
+/* Stays solid while it shrinks, only fading right at the end */
+@keyframes sponsor-bubble-pop {
+  from {
+    animation-timing-function: cubic-bezier(0.12, 0, 0.39, 0);
+    transform: scale(1);
+    opacity: 1;
+  }
+  70% {
+    animation-timing-function: linear;
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.25);
+    opacity: 0;
+  }
+}
+
+/* Re-form: grows back from nothing with a springy overshoot */
+.sponsor-bubble--returning .sponsor-bubble-body {
+  animation: sponsor-bubble-return 520ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes sponsor-bubble-return {
+  from {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Burst: thin streaks in the bubble's colour spraying out from the middle */
+.sponsor-bubble-burst {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Each streak hangs from the bubble's centre, rotated to its angle about its
+   top end, so moving it "down" sends it straight outwards */
+.sponsor-bubble-drop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 20%;
+  transform: translateX(-50%) rotate(var(--angle));
+  transform-origin: 50% 0;
+}
+
+.sponsor-bubble-drop:nth-child(even) {
+  height: 14%;
+}
+
+.sponsor-bubble-drop::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--burst-colour, #e3b09c);
+  transform-origin: 50% 0;
+  animation: sponsor-burst-drop 320ms both;
+}
+
+/* Hidden until the bubble is half gone, then shoots out past the edge while
+   shrinking to nothing along its length */
+@keyframes sponsor-burst-drop {
+  from {
+    animation-timing-function: steps(1, end);
+    visibility: hidden;
+    transform: translateY(80%) scaleY(1);
+  }
+  22% {
+    animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+    visibility: visible;
+    transform: translateY(80%) scaleY(1);
+  }
+  to {
+    visibility: visible;
+    transform: translateY(400%) scaleY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .sponsor-bubble-drop {
+    width: 4px;
+  }
 }
 
 /* --drift scales the movement; smaller bubbles on phones drift less */
@@ -110,8 +215,19 @@
   }
 }
 
+/* No float, burst or bounce; the bubble simply hides while its dialog is open */
 @media (prefers-reduced-motion: reduce) {
-  .sponsor-bubble {
+  .sponsor-bubble,
+  .sponsor-bubble--returning .sponsor-bubble-body {
     animation: none;
+  }
+
+  .sponsor-bubble--popped .sponsor-bubble-body {
+    animation: none;
+    opacity: 0;
+  }
+
+  .sponsor-bubble-burst {
+    display: none;
   }
 }
