@@ -43,6 +43,12 @@ export const routes: Routes = [
         title: 'Events - The Marlborough Playhouse'
     },
     {
+        path: 'sponsors',
+        loadComponent: () =>
+            import('./pages/sponsors-page/sponsors-page.component').then((m) => m.SponsorsPageComponent),
+        title: 'Sponsors - The Marlborough Playhouse'
+    },
+    {
         path: 'cookie-policy',
         component: CookiePolicyPageComponent,
         title: 'Cookie Policy - The Marlborough Playhouse'

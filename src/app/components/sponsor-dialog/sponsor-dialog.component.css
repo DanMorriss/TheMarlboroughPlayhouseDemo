@@ -1,0 +1,153 @@
+.sponsor-dialog {
+  width: calc(100% - 32px);
+  max-width: 440px;
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: none;
+  border-radius: 24px;
+  background: #fff;
+  color: #545454;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.sponsor-dialog::backdrop {
+  background: rgba(84, 84, 84, 0.45);
+}
+
+/* Soft scale + fade in */
+.sponsor-dialog[open] {
+  animation: sponsor-dialog-in 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sponsor-dialog[open]::backdrop {
+  animation: sponsor-backdrop-in 200ms ease-out;
+}
+
+@keyframes sponsor-dialog-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(8px);
+  }
+}
+
+@keyframes sponsor-backdrop-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.sponsor-dialog-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 24px 28px;
+  text-align: center;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.sponsor-dialog-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: #f9f3f3;
+  color: #545454;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.sponsor-dialog-close:hover {
+  background: #f1d0c3;
+}
+
+.sponsor-dialog-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+.sponsor-dialog-logo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+}
+
+.sponsor-dialog-title {
+  margin: 16px 0 8px;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.sponsor-dialog-description {
+  margin: 0;
+}
+
+.sponsor-dialog-links {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  width: 100%;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sponsor-dialog-links a,
+.sponsor-dialog-links span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: #f9f3f3;
+  text-align: left;
+  word-break: break-word;
+}
+
+.sponsor-dialog-links a {
+  font-weight: 600;
+  color: #545454;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: background-color 150ms ease, text-decoration-color 150ms ease;
+}
+
+.sponsor-dialog-links a:hover,
+.sponsor-dialog-links a:focus-visible {
+  background: #f1d0c3;
+  text-decoration-color: currentColor;
+}
+
+.sponsor-dialog-links svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+@media (min-width: 768px) {
+  .sponsor-dialog-card {
+    padding: 40px 36px 32px;
+  }
+
+  .sponsor-dialog-title {
+    font-size: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sponsor-dialog[open],
+  .sponsor-dialog[open]::backdrop {
+    animation: none;
+  }
+}

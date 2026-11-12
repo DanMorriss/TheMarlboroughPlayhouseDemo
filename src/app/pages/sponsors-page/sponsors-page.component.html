@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+
+<main class="px-[16px] pt-[16px] md:pt-[32px] pb-[48px] md:pb-[72px] text-[16px]/[26px] md:text-[19px]/[30px]">
+  <div class="max-w-[1100px] mx-auto">
+    <h1 class="section-heading">Sponsors</h1>
+    <p class="sponsors-intro">
+      Thank you to the local businesses and organisations who support The Marlborough Playhouse.
+      Tap a bubble to find out more about each one.
+    </p>
+
+    <!-- Bubble positions are worked out from the list's width (see bubble-layout.ts) -->
+    <ul #list class="sponsor-bubbles" [style.height.px]="layout()?.height">
+      @if (layout(); as layout) {
+        @for (sponsor of sponsors; track sponsor.name; let i = $index) {
+          <li
+            class="sponsor-bubble-slot"
+            [style.left.px]="layout.bubbles[i].left"
+            [style.top.px]="layout.bubbles[i].top"
+            [style.width.px]="layout.bubbles[i].size"
+            [style.height.px]="layout.bubbles[i].size"
+          >
+            <button
+              type="button"
+              class="sponsor-bubble"
+              [style.animation-duration.s]="floats[i].duration"
+              [style.animation-delay.s]="floats[i].delay"
+              [attr.aria-label]="sponsor.name"
+              aria-haspopup="dialog"
+              (click)="selected.set(sponsor)"
+            >
+              <img
+                [ngSrc]="'assets/images/sponsors/' + sponsor.logo"
+                width="480"
+                height="480"
+                [priority]="i < 6"
+                alt=""
+              />
+            </button>
+          </li>
+        }
+      }
+    </ul>
+  </div>
+</main>
+
+<app-sponsor-dialog [sponsor]="selected()" (closed)="selected.set(null)" />
