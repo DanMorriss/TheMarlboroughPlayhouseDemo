@@ -8,29 +8,36 @@
       Tap a bubble to find out more about each one.
     </p>
 
-    <ul class="sponsor-bubbles">
-      @for (bubble of bubbles; track bubble.sponsor.name) {
-        <li
-          [class]="'sponsor-bubble-slot sponsor-bubble-slot--' + bubble.size"
-          [style.--offset]="bubble.offset + 'px'"
-        >
-          <button
-            type="button"
-            class="sponsor-bubble"
-            [style.animation-duration.s]="bubble.duration"
-            [style.animation-delay.s]="bubble.delay"
-            [attr.aria-label]="bubble.sponsor.name"
-            aria-haspopup="dialog"
-            (click)="selected.set(bubble.sponsor)"
+    <!-- Bubble positions are worked out from the list's width (see bubble-layout.ts) -->
+    <ul #list class="sponsor-bubbles" [style.height.px]="layout()?.height">
+      @if (layout(); as layout) {
+        @for (sponsor of sponsors; track sponsor.name; let i = $index) {
+          <li
+            class="sponsor-bubble-slot"
+            [style.left.px]="layout.bubbles[i].left"
+            [style.top.px]="layout.bubbles[i].top"
+            [style.width.px]="layout.bubbles[i].size"
+            [style.height.px]="layout.bubbles[i].size"
           >
-            <img
-              [ngSrc]="'assets/images/sponsors/' + bubble.sponsor.logo"
-              width="480"
-              height="480"
-              alt=""
-            />
-          </button>
-        </li>
+            <button
+              type="button"
+              class="sponsor-bubble"
+              [style.animation-duration.s]="floats[i].duration"
+              [style.animation-delay.s]="floats[i].delay"
+              [attr.aria-label]="sponsor.name"
+              aria-haspopup="dialog"
+              (click)="selected.set(sponsor)"
+            >
+              <img
+                [ngSrc]="'assets/images/sponsors/' + sponsor.logo"
+                width="480"
+                height="480"
+                [priority]="i < 6"
+                alt=""
+              />
+            </button>
+          </li>
+        }
       }
     </ul>
   </div>

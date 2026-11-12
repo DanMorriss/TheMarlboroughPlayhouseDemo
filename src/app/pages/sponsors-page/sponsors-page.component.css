@@ -4,32 +4,24 @@
   text-align: center;
 }
 
-/* Loose, staggered cluster: wrapped rows with uneven vertical offsets */
+/* Scattered cluster; each bubble's position and size is set inline from the
+   packing layout. Bottom margin leaves room for the float animation. */
 .sponsor-bubbles {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 8px 12px;
-  margin: 0;
-  padding: 0 0 48px;
+  position: relative;
+  min-height: 400px;
+  margin: 16px 0 48px;
+  padding: 0;
   list-style: none;
 }
 
-/* Sizes fit three bubbles across a 375px phone */
 .sponsor-bubble-slot {
-  --size: 96px;
-  width: var(--size);
-  height: var(--size);
-  margin-top: calc(var(--offset, 0px) * 0.5);
+  position: absolute;
 }
 
-.sponsor-bubble-slot--sm {
-  --size: 84px;
-}
-
-.sponsor-bubble-slot--lg {
-  --size: 110px;
+/* Bring the bubble being pointed at or focused in front of its neighbours */
+.sponsor-bubble-slot:hover,
+.sponsor-bubble-slot:focus-within {
+  z-index: 1;
 }
 
 .sponsor-bubble {
@@ -87,19 +79,24 @@
   outline-offset: 4px;
 }
 
+/* --drift scales the movement; smaller bubbles on phones drift less */
+.sponsor-bubbles {
+  --drift: 0.5;
+}
+
 @keyframes sponsor-float {
   0%,
   100% {
     transform: translate(0, 0);
   }
   25% {
-    transform: translate(4px, -10px);
+    transform: translate(calc(4px * var(--drift)), calc(-10px * var(--drift)));
   }
   50% {
-    transform: translate(-2px, -16px);
+    transform: translate(calc(-2px * var(--drift)), calc(-16px * var(--drift)));
   }
   75% {
-    transform: translate(-5px, -6px);
+    transform: translate(calc(-5px * var(--drift)), calc(-6px * var(--drift)));
   }
 }
 
@@ -109,20 +106,7 @@
   }
 
   .sponsor-bubbles {
-    gap: 16px 28px;
-  }
-
-  .sponsor-bubble-slot {
-    --size: 170px;
-    margin-top: var(--offset, 0px);
-  }
-
-  .sponsor-bubble-slot--sm {
-    --size: 140px;
-  }
-
-  .sponsor-bubble-slot--lg {
-    --size: 200px;
+    --drift: 1;
   }
 }
 
