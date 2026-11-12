@@ -3,6 +3,7 @@
   class="sponsor-dialog"
   aria-labelledby="sponsor-dialog-title"
   (close)="closed.emit()"
+  (cancel)="onCancel($event)"
   (click)="onDialogClick($event)"
 >
   @if (sponsor(); as sponsor) {
@@ -27,11 +28,18 @@
         <p class="sponsor-dialog-description">{{ sponsor.description }}</p>
       }
 
+      <!-- Same pill buttons as the contact section (.contact-button in styles.css) -->
       <ul class="sponsor-dialog-links">
         @if (sponsor.website) {
           <li>
-            <a [href]="'https://' + sponsor.website" target="_blank" rel="noopener">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <a
+              [href]="'https://' + sponsor.website"
+              target="_blank"
+              rel="noopener"
+              class="contact-button contact-button--website"
+              [attr.aria-label]="'Visit their website: ' + sponsor.website"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="9" />
                 <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
               </svg>
@@ -41,36 +49,38 @@
         }
         @if (sponsor.phone) {
           <li>
-            <a [href]="phoneHref()">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <a [href]="phoneHref()" class="contact-button contact-button--phone" [attr.aria-label]="'Call: ' + sponsor.phone">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" />
               </svg>
               {{ sponsor.phone }}
             </a>
           </li>
         }
-        @for (social of sponsor.socials; track social.platform + social.handle) {
+        @for (social of linkedSocials(); track social.url) {
           <li>
-            @if (social.url) {
-              <a [href]="social.url" target="_blank" rel="noopener">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" />
-                  <path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4" />
-                </svg>
-                {{ social.platform }}: {{ social.handle }}
-              </a>
-            } @else {
-              <span>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" />
-                  <path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4" />
-                </svg>
-                @if (social.platform) { {{ social.platform }}: }{{ social.handle }}
-              </span>
-            }
+            <a
+              [href]="social.url"
+              target="_blank"
+              rel="noopener"
+              [class]="'contact-button contact-button--' + social.platform.toLowerCase()"
+              [attr.aria-label]="social.platform + ': ' + social.handle"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path [attr.d]="icons[social.platform]" />
+              </svg>
+              {{ social.handle }}
+            </a>
           </li>
         }
       </ul>
+
+      <!-- Handles we can't link yet because their platform isn't known -->
+      @for (social of unlinkedSocials(); track social.handle) {
+        <p class="sponsor-dialog-handle">
+          @if (social.platform) { {{ social.platform }}: }{{ social.handle }}
+        </p>
+      }
     </div>
   }
 </dialog>

@@ -103,9 +103,24 @@ body {
     background-color: #545454;
 }
 
-/* Primary "Book now" action: deep pink to tie in with the site's pinks */
-.contact-button--book {
+/* Primary "Book now" action: deep pink to tie in with the site's pinks.
+   Also used for sponsors' websites, their main link. */
+.contact-button--book,
+.contact-button--website {
     background-color: #B8456B;
+}
+
+/* Sponsor phone numbers: neutral like email */
+.contact-button--phone {
+    background-color: #545454;
+}
+
+.contact-button--facebook {
+    background-color: #1260C9;
+}
+
+.contact-button--x {
+    background-color: #000;
 }
 
 @media (min-width: 768px) {

@@ -20,21 +20,35 @@
             [style.height.px]="layout.bubbles[i].size"
           >
             <button
+              #bubble
               type="button"
               class="sponsor-bubble"
+              [class.sponsor-bubble--popped]="selected() === sponsor"
+              [class.sponsor-bubble--returning]="returning() === sponsor"
               [style.animation-duration.s]="floats[i].duration"
               [style.animation-delay.s]="floats[i].delay"
+              [style.--burst-colour]="burstColours[sponsor.colour]"
               [attr.aria-label]="sponsor.name"
               aria-haspopup="dialog"
-              (click)="selected.set(sponsor)"
+              (click)="open(sponsor, bubble)"
             >
-              <img
-                [ngSrc]="'assets/images/sponsors/' + sponsor.logo"
-                width="480"
-                height="480"
-                [priority]="i < 6"
-                alt=""
-              />
+              <!-- Separate from the button so popping doesn't interrupt the float -->
+              <span class="sponsor-bubble-body" (animationend)="onBodyAnimationEnd($event, sponsor)">
+                <img
+                  [ngSrc]="'assets/images/sponsors/' + sponsor.logo"
+                  width="480"
+                  height="480"
+                  [priority]="i < 6"
+                  alt=""
+                />
+              </span>
+              @if (selected() === sponsor) {
+                <span class="sponsor-bubble-burst" aria-hidden="true">
+                  @for (drop of drops; track drop) {
+                    <span class="sponsor-bubble-drop" [style.--angle.deg]="drop"></span>
+                  }
+                </span>
+              }
             </button>
           </li>
         }
@@ -43,4 +57,4 @@
   </div>
 </main>
 
-<app-sponsor-dialog [sponsor]="selected()" (closed)="selected.set(null)" />
+<app-sponsor-dialog [sponsor]="selected()" [origin]="origin()" (closed)="onDialogClosed()" />
