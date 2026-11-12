@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+
+<main class="px-[16px] pt-[16px] md:pt-[32px] pb-[48px] md:pb-[72px] text-[16px]/[26px] md:text-[19px]/[30px]">
+  <div class="max-w-[1100px] mx-auto">
+    <h1 class="section-heading">Sponsors</h1>
+    <p class="sponsors-intro">
+      Thank you to the local businesses and organisations who support The Marlborough Playhouse.
+      Tap a bubble to find out more about each one.
+    </p>
+
+    <ul class="sponsor-bubbles">
+      @for (bubble of bubbles; track bubble.sponsor.name) {
+        <li
+          [class]="'sponsor-bubble-slot sponsor-bubble-slot--' + bubble.size"
+          [style.--offset]="bubble.offset + 'px'"
+        >
+          <button
+            type="button"
+            class="sponsor-bubble"
+            [style.animation-duration.s]="bubble.duration"
+            [style.animation-delay.s]="bubble.delay"
+            [attr.aria-label]="bubble.sponsor.name"
+            aria-haspopup="dialog"
+            (click)="selected.set(bubble.sponsor)"
+          >
+            <img
+              [ngSrc]="'assets/images/sponsors/' + bubble.sponsor.logo"
+              width="480"
+              height="480"
+              alt=""
+            />
+          </button>
+        </li>
+      }
+    </ul>
+  </div>
+</main>
+
+<app-sponsor-dialog [sponsor]="selected()" (closed)="selected.set(null)" />
